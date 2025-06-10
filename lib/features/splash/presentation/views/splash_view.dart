@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_ecommerce/features/splash/presentation/views/splash_view_body.dart';
 
 class SplashView extends StatelessWidget{
   const SplashView({super.key});
   static const routeName = "splash";
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Scaffold(
+      appBar: AppBar(),
+      body: SplashViewBody(),
+    );
   }
   
 }
