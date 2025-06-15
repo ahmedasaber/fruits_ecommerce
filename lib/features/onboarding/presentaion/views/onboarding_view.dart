@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_ecommerce/features/onboarding/presentaion/views/widgets/onboarding_view_body.dart';
 
 class OnBoardingView extends StatelessWidget{
   const OnBoardingView({super.key});
@@ -6,8 +7,7 @@ class OnBoardingView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Center(child: Text('GG'),),
+      body: OnBoardingViewBody(),
     );
   }
 

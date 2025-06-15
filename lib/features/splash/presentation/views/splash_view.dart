@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_ecommerce/features/splash/presentation/views/splash_view_body.dart';
+import 'package:fruits_ecommerce/features/splash/presentation/views/widgets/splash_view_body.dart';
 
 class SplashView extends StatelessWidget{
   const SplashView({super.key});
@@ -7,7 +7,6 @@ class SplashView extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: SplashViewBody(),
     );
   }
