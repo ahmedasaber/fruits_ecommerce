@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits_ecommerce/constants.dart';
 import 'package:fruits_ecommerce/core/helper_function/get_current_localization.dart';
 import 'package:fruits_ecommerce/core/services/shared_preferences_singleton.dart';
-import 'package:fruits_ecommerce/features/authentication/presentaion/views/login_view.dart';
+import 'package:fruits_ecommerce/features/authentication/presentation/views/login_view.dart';
 import 'package:fruits_ecommerce/features/onboarding/presentaion/views/onboarding_view.dart';
 
 class SplashViewBody extends StatefulWidget{
