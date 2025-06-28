@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fruits_ecommerce/core/errors/exceptions.dart';
 import 'package:fruits_ecommerce/core/errors/failures.dart';
 import 'package:fruits_ecommerce/core/services/firebase_auth_service.dart';
