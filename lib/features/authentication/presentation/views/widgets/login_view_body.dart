@@ -3,6 +3,7 @@ import 'package:fruits_ecommerce/constants.dart';
 import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/core/widget/custom_button.dart';
+import 'package:fruits_ecommerce/core/widget/custom_password_textfireld.dart';
 import 'package:fruits_ecommerce/core/widget/custom_text_field.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/widgets/custom_social_button.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/widgets/custom_two_text.dart';
@@ -26,15 +27,7 @@ class LoginViewBody extends StatelessWidget {
               textInputType: TextInputType.emailAddress,
             ),
             const SizedBox(height: 16),
-            CustomTextFormField(
-              hintText: 'كلمة المرور',
-              textInputType: TextInputType.visiblePassword,
-              isPassword: true,
-              suffixIcon: Icon(
-                Icons.remove_red_eye_rounded,
-                color: AppColors.hintTextColor,
-              ),
-            ),
+            PasswordTextField(onSaved: (value){}),
             const SizedBox(height: 16),
             Text(
               'نسيت كلمة المرور؟',
