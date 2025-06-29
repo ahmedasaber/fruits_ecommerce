@@ -5,7 +5,7 @@ import 'package:fruits_ecommerce/core/helper_function/get_current_localization.d
 import 'package:fruits_ecommerce/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/core/widget/custom_button.dart';
-import 'package:fruits_ecommerce/features/authentication/presentation/views/login_view.dart';
+import 'package:fruits_ecommerce/features/authentication/presentation/views/signIn_view.dart';
 import 'package:fruits_ecommerce/features/onboarding/presentaion/views/widgets/onboarding_page_view.dart';
 
 class OnBoardingViewBody extends StatefulWidget{
@@ -62,7 +62,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
               text: 'ابدأ الان',
               onPressed: (){
                 AppPrefs.setBool(kOnBoardingViewSeen, true);
-                Navigator.pushReplacementNamed(context, LoginView.routeName);
+                Navigator.pushReplacementNamed(context, SignInView.routeName);
               }
             ),
           ),

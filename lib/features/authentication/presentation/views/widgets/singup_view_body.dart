@@ -69,7 +69,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   if(formKey.currentState!.validate()){
                     formKey.currentState!.save();
                     if (isAcceptTerms) {
-                      context.read<SignupCubit>().createAccount(name, email, password);
+                      context.read<SignupCubit>().createAccount(name.trim(), email.trim(), password.trim());
                     }else{
                       buildErrorBar(context, 'يجب عليك الموافقة على شروط والأحكام');
                     }

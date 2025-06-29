@@ -28,4 +28,30 @@ class AuthRepoImpl extends AuthRepo{
    }
   }
 
+  @override
+  Future<Either<Failure, UserEntity>> singInWithEmailAndPassword({required String email, required String password}) async{
+    try {
+      var user = await firebaseAuthService.signInUsingEmailPassword(emailAddress: email, password: password);
+      return right(UserModel.fromFirebaseUser(user));
+    } on CustomExceptions catch (e) {
+      return left(ServerFailure(e.message));
+    }catch (e){
+      logger.w('Exception in AuthRepoImpl.singInWithEmailAndPassword: ${e.toString()}');
+      return left(ServerFailure('هناك خطأ ما، حاول مرة أخري.'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> singInWithGoogle() async{
+    try {
+      var user = await firebaseAuthService.signInWithGoogle();
+      return right(UserModel.fromFirebaseUser(user));
+    } on CustomExceptions catch (e) {
+      return left(ServerFailure(e.message));
+    }catch (e){
+      logger.w('Exception in AuthRepoImpl.singInWithGoogle: ${e.toString()}');
+      return left(ServerFailure('هناك خطأ ما، حاول مرة أخري.'));
+    }
+  }
+
 }

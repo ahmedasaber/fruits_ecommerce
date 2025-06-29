@@ -3,6 +3,9 @@
         android:label="Fruit Hub"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+        <meta-data
+            android:name="com.google.android.gms.signin.defaultAccount"
+            android:value="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

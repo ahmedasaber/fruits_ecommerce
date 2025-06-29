@@ -4,4 +4,6 @@ import 'package:dartz/dartz.dart';
 
 abstract class AuthRepo{
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword({required String name ,required String email, required String password});
+  Future<Either<Failure, UserEntity>> singInWithEmailAndPassword({required String email, required String password});
+  Future<Either<Failure, UserEntity>> singInWithGoogle();
 }
