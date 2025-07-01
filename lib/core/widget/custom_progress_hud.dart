@@ -11,6 +11,7 @@ class CustomProgressHUD extends StatelessWidget {
   Widget build(BuildContext context) {
     return ModalProgressHUD(
         inAsyncCall: isLoading,
+        opacity: 0,
         child: child
     );
   }

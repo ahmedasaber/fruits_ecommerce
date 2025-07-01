@@ -118,4 +118,7 @@ class FirebaseAuthService{
        throw CustomExceptions(message: facebookLoginErrorMsg);
    }
   }
+  Future deleteUser()async{
+    await FirebaseAuth.instance.currentUser!.delete();
+  }
 }

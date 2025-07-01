@@ -8,4 +8,7 @@ abstract class AuthRepo{
   Future<Either<Failure, UserEntity>> singInWithEmailAndPassword({required BuildContext context,required String email, required String password});
   Future<Either<Failure, UserEntity>> singInWithGoogle({required BuildContext context,});
   Future<Either<Failure, UserEntity>> singInWithFacebook({required BuildContext context,});
+  Future addUserData({required UserEntity user});
+  Future<UserEntity> getUserData({required String docId});
+
 }

@@ -26,7 +26,7 @@ class SignInView extends StatelessWidget {
               return buildErrorBar(context, state.message);
             }
             if(state is SignInSuccess) {
-              return buildErrorBar(context, state.userEntity.name+state.userEntity.email+state.userEntity.uId);
+              return buildErrorBar(context, 'success');
             }
           },
           builder: (context, state) {
