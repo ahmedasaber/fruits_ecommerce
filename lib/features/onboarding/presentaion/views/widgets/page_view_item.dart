@@ -5,6 +5,7 @@ import 'package:fruits_ecommerce/constants.dart';
 import 'package:fruits_ecommerce/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/signIn_view.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 import '../../../../../core/helper_function/get_current_localization.dart';
 
@@ -55,7 +56,7 @@ class PageViewItem extends StatelessWidget {
                       left: isArabic() ? 0 : 20,
                     ),
                     child: Text(
-                      "تخط",
+                      S.of(context).skip,
                       style: TextStyles.regular13.copyWith(color: Color(0xff949D9E)),
                     ),
                   ),

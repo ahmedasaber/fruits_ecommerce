@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fruits_ecommerce/features/authentication/domain/entities/user_entity.dart';
@@ -10,9 +11,10 @@ class SignupCubit extends Cubit<SignupState> {
 
   final AuthRepo authRepo;
 
-  Future<void> createAccount(String name, String email, String password) async {
+  Future<void> createAccount(BuildContext context,String name, String email, String password) async {
     emit(SignupLoading());
     var result = await authRepo.createUserWithEmailAndPassword(
+      context: context,
       name: name,
       email: email,
       password: password,

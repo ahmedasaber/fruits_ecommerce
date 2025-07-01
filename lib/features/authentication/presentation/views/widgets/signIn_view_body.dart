@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_ecommerce/constants.dart';
-import 'package:fruits_ecommerce/core/helper_function/error_snack_bar.dart';
 import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/core/widget/custom_button.dart';
@@ -11,6 +10,7 @@ import 'package:fruits_ecommerce/features/authentication/presentation/signin_cub
 import 'package:fruits_ecommerce/features/authentication/presentation/views/widgets/custom_social_button.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/widgets/custom_two_text.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/widgets/or_divider.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 import '../signup_view.dart';
 
 class SignInViewBody extends StatefulWidget {
@@ -42,7 +42,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 onSaved: (value){
                   email = value!;
                 },
-                hintText: 'البريد الالكتروني',
+                hintText: S.of(context).emailHint,
                 textInputType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 16),
@@ -53,18 +53,18 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               ),
               const SizedBox(height: 16),
               Text(
-                'نسيت كلمة المرور؟',
+                S.of(context).forgotPassword,
                 style: TextStyles.semiBold13.copyWith(
                   color: AppColors.lightPrimaryColor,
                 ),
               ),
               const SizedBox(height: 33,),
               CustomButton(
-                text: 'تسجيل دخول',
+                text: S.of(context).login,
                 onPressed: () {
                   if(formKey.currentState!.validate()){
                     formKey.currentState!.save();
-                    context.read<SignInCubit>().signInWithEmailAndPassword(email.trim(), password.trim());
+                    context.read<SignInCubit>().signInWithEmailAndPassword(context,email.trim(), password.trim());
                   }else{
                     autoValidateMode = AutovalidateMode.always;
                     setState(() {});
@@ -74,7 +74,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               const SizedBox(height: 33,),
               Center(
                 child: CustomTwoText(
-                  text1: ' لا تمتلك حساب؟', text2: 'قم بإنشاء حساب',
+                  text1: S.of(context).noAccount, text2: S.of(context).createAccount,
                   onTap: () => Navigator.pushNamed(context, SignUpView.routeName)
                 )
               ),
@@ -82,12 +82,16 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               const OrDivider(),
               const SizedBox(height: 24,),
               CustomSocialButton(onPressed: (){
-                context.read<SignInCubit>().signInWithGoogle();
-              }, title: 'تسجيل بواسطة جوجل', image: 'assets/images/google-icon.svg'),
+                context.read<SignInCubit>().signInWithGoogle(context);
+              }, title: S.of(context).signInWithGoogle, image: 'assets/images/google-icon.svg'),
               const SizedBox(height: 16),
-              CustomSocialButton(onPressed: (){}, title: 'تسجيل بواسطة أبل', image: 'assets/images/apple-icon.svg'),
+              CustomSocialButton(onPressed: (){
+                context.read<SignInCubit>().signInWithApple(context);
+              }, title: S.of(context).signInWithApple, image: 'assets/images/apple-icon.svg'),
               const SizedBox(height: 16),
-              CustomSocialButton(onPressed: (){}, title: 'تسجيل بواسطة فيسبوك', image: 'assets/images/facebook-icon.svg'),
+              CustomSocialButton(onPressed: (){
+                context.read<SignInCubit>().signInWithFacebook(context);
+              }, title: S.of(context).signInWithFacebook, image: 'assets/images/facebook-icon.svg'),
               const SizedBox(height: 33),
             ],
           ),

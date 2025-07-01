@@ -8,6 +8,7 @@ import 'package:fruits_ecommerce/core/widget/custom_text_field.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/signup_cubit/signup_cubit.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/widgets/custom_two_text.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/widgets/term_and_conditions.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class SignUpViewBody extends StatefulWidget{
   const SignUpViewBody({super.key});
@@ -39,7 +40,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 onSaved: (value){
                   name = value!;
                 },
-                hintText: 'الاسم كامل',
+                hintText: S.of(context).fullNameHint,
                 textInputType: TextInputType.name,
               ),
               const SizedBox(height: 16),
@@ -47,7 +48,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 onSaved: (value){
                   email = value!;
                 },
-                hintText: 'البريد الالكتروني',
+                hintText: S.of(context).emailHint,
                 textInputType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 16),
@@ -64,14 +65,14 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               ),
               const SizedBox(height: 33,),
               CustomButton(
-                text: 'إنشاء حساب جديد',
+                text: S.of(context).newAccountButton,
                 onPressed: () {
                   if(formKey.currentState!.validate()){
                     formKey.currentState!.save();
                     if (isAcceptTerms) {
-                      context.read<SignupCubit>().createAccount(name.trim(), email.trim(), password.trim());
+                      context.read<SignupCubit>().createAccount(context,name.trim(), email.trim(), password.trim());
                     }else{
-                      buildErrorBar(context, 'يجب عليك الموافقة على شروط والأحكام');
+                      buildErrorBar(context, S.of(context).mustAcceptTerms);
                     }
                   }else{
                     autoValidateMode = AutovalidateMode.always;
@@ -82,7 +83,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               const SizedBox(height: 26,),
               Center(
                 child: CustomTwoText(
-                    text1: 'تمتلك حساب بالفعل؟ ', text2: 'تسجيل دخول',
+                    text1: S.of(context).alreadyHaveAccount, text2: S.of(context).login,
                     onTap: () => Navigator.pop(context)
                 ),
               )

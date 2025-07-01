@@ -1,12 +1,12 @@
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce/constants.dart';
-import 'package:fruits_ecommerce/core/helper_function/get_current_localization.dart';
 import 'package:fruits_ecommerce/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/core/widget/custom_button.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/signIn_view.dart';
 import 'package:fruits_ecommerce/features/onboarding/presentaion/views/widgets/onboarding_page_view.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class OnBoardingViewBody extends StatefulWidget{
   const OnBoardingViewBody({super.key});
@@ -42,7 +42,6 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
         ),
         DotsIndicator(
           dotsCount: 2,
-          //reversed: isArabic() ? true : false,
           decorator: DotsDecorator(
             activeColor: AppColors.primaryColor,
             color: currentPage == 0 ? AppColors.primaryColor.withValues(alpha: 0.5) : AppColors.primaryColor
@@ -59,7 +58,7 @@ class _OnBoardingViewBodyState extends State<OnBoardingViewBody> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: kHorizontalPadding),
             child: CustomButton(
-              text: 'ابدأ الان',
+              text: S.of(context).startNow,
               onPressed: (){
                 AppPrefs.setBool(kOnBoardingViewSeen, true);
                 Navigator.pushReplacementNamed(context, SignInView.routeName);

@@ -1,6 +1,6 @@
 import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce/core/errors/exceptions.dart';
 import 'package:fruits_ecommerce/core/errors/failures.dart';
 import 'package:fruits_ecommerce/core/services/firebase_auth_service.dart';
@@ -16,9 +16,9 @@ class AuthRepoImpl extends AuthRepo{
 
   var logger = Logger();
   @override
-  Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword({required String name,required String email, required String password}) async{
+  Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword({required BuildContext context,required String name,required String email, required String password}) async{
    try {
-     var user =  await firebaseAuthService.createAccountWithEmail(emailAddress: email, password: password);
+     var user =  await firebaseAuthService.createAccountWithEmail(context: context,emailAddress: email, password: password);
      return right(UserModel.fromFirebaseUser(user));
    } on CustomExceptions catch (e) {
      return left(ServerFailure(e.message));
@@ -29,9 +29,9 @@ class AuthRepoImpl extends AuthRepo{
   }
 
   @override
-  Future<Either<Failure, UserEntity>> singInWithEmailAndPassword({required String email, required String password}) async{
+  Future<Either<Failure, UserEntity>> singInWithEmailAndPassword({required BuildContext context,required String email, required String password}) async{
     try {
-      var user = await firebaseAuthService.signInUsingEmailPassword(emailAddress: email, password: password);
+      var user = await firebaseAuthService.signInUsingEmailPassword(context: context,emailAddress: email, password: password);
       return right(UserModel.fromFirebaseUser(user));
     } on CustomExceptions catch (e) {
       return left(ServerFailure(e.message));
@@ -42,14 +42,27 @@ class AuthRepoImpl extends AuthRepo{
   }
 
   @override
-  Future<Either<Failure, UserEntity>> singInWithGoogle() async{
+  Future<Either<Failure, UserEntity>> singInWithGoogle({required BuildContext context,}) async{
     try {
-      var user = await firebaseAuthService.signInWithGoogle();
+      var user = await firebaseAuthService.signInWithGoogle(context: context,);
       return right(UserModel.fromFirebaseUser(user));
     } on CustomExceptions catch (e) {
       return left(ServerFailure(e.message));
     }catch (e){
       logger.w('Exception in AuthRepoImpl.singInWithGoogle: ${e.toString()}');
+      return left(ServerFailure('هناك خطأ ما، حاول مرة أخري.'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> singInWithFacebook({required BuildContext context,}) async{
+    try {
+      var user = await firebaseAuthService.signInWithFacebook(context: context,);
+      return right(UserModel.fromFirebaseUser(user));
+    } on CustomExceptions catch (e) {
+      return left(ServerFailure(e.message));
+    }catch (e){
+      logger.w('Exception in AuthRepoImpl.singInWithFacebook: ${e.toString()} code: ${e.runtimeType}');
       return left(ServerFailure('هناك خطأ ما، حاول مرة أخري.'));
     }
   }
