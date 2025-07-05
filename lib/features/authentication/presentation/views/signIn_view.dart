@@ -7,6 +7,7 @@ import 'package:fruits_ecommerce/core/widget/custom_progress_hud.dart';
 import 'package:fruits_ecommerce/features/authentication/domain/repo/auth_repo.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/signin_cubit/signin_cubit.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/widgets/signIn_view_body.dart';
+import 'package:fruits_ecommerce/features/home/presentation/views/home_view.dart';
 import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class SignInView extends StatelessWidget {
@@ -23,10 +24,10 @@ class SignInView extends StatelessWidget {
         body: BlocConsumer<SignInCubit, SignInState>(
           listener: (context, state) {
             if(state is SignInFailure) {
-              return buildErrorBar(context, state.message);
+              buildErrorBar(context, state.message);
             }
             if(state is SignInSuccess) {
-              return buildErrorBar(context, 'success');
+              Navigator.pushNamed(context, HomeView.routeName);
             }
           },
           builder: (context, state) {
