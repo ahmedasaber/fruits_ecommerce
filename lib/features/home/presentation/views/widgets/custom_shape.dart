@@ -4,8 +4,9 @@ import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/custom_feature_button.dart';
 
 class CustomShape extends StatelessWidget {
-  const CustomShape({super.key});
+  const CustomShape({super.key, required this.onPressedBt});
 
+  final VoidCallback onPressedBt;
   @override
   Widget build(BuildContext context) {
     return ClipPath(
@@ -13,7 +14,13 @@ class CustomShape extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width / 2,
         padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(color: AppColors.moreLightPrimaryColor),
+        decoration: BoxDecoration(
+            color: AppColors.moreLightPrimaryColor,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(5),
+            bottomRight: Radius.circular(5),
+          ),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -26,7 +33,7 @@ class CustomShape extends StatelessWidget {
               'خصم 25%',
               style: TextStyles.bold19.copyWith(color: Colors.white),
             ),
-            CustomFeatureButton(),
+            CustomFeatureButton(onPressed: onPressedBt,),
           ],
         ),
       ),

@@ -8,8 +8,8 @@ class FeatureItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 160,
+      width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.black,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(16),
           bottomLeft: Radius.circular(16),
@@ -28,7 +28,7 @@ class FeatureItem extends StatelessWidget {
               ),
             ),
           ),
-          CustomShape(),
+          CustomShape(onPressedBt: (){},),
         ],
       ),
     );
