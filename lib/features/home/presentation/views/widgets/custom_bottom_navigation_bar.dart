@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce/features/home/domain/entites/bottom_navigation_bar_entity.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/bottom_naviagtion_bar_item.dart';
 
-class CustomBottomNavigationBar extends StatelessWidget {
+class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({super.key});
 
+  @override
+  State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
+}
+
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,9 +34,18 @@ class CustomBottomNavigationBar extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: BottomNavigationBarEntity.bottomNavigationBarItems.map((e) =>
-            NavigationBarItem(isSelected: false, barEntity: e,)
-        ).toList()
+        children: BottomNavigationBarEntity.bottomNavigationBarItems.asMap().entries.map((e) {
+          var index = e.key;
+          var entity = e.value;
+          return GestureDetector(
+            onTap: (){
+              setState(() {
+                selectedIndex = index;
+              });
+            },
+            child: NavigationBarItem(isSelected: index == selectedIndex, barEntity: entity,)
+          );
+        }).toList()
       ),
     );
   }

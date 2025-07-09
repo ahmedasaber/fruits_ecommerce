@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce/core/widget/custom_search_textfield.dart';
+import 'package:fruits_ecommerce/features/home/presentation/views/widgets/active_bottom_bar_item.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/best_selling_grid_view.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/best_selling_header.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/custom_home_app_bar.dart';
