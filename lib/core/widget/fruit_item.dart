@@ -9,11 +9,12 @@ class FruitItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 167,
       padding: EdgeInsets.only(left: 8, right: 8, bottom: 16, top: 8),
       decoration: ShapeDecoration(
         color: Color(0xfff3f5f7),
-        shape: RoundedRectangleBorder(),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(5)
+        ),
       ),
       child: Column(
         children: [
@@ -25,7 +26,7 @@ class FruitItem extends StatelessWidget {
               ),
               Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(top:12.0),
+                  padding: const EdgeInsets.only(top:10.0),
                   child: Image.asset('assets/images/fruit-image.png', fit: BoxFit.contain,),
                 )
               ),
