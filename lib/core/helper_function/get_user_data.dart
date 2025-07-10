@@ -6,6 +6,6 @@ import 'package:fruits_ecommerce/features/authentication/domain/entities/user_en
 
 UserEntity getUser(){
   var jsonString = AppPrefs.getString(kUserData);
-  var userEntity =  UserModel.fromJson(jsonDecode(jsonString) as Map<String, dynamic>);
+  var userEntity =  UserModel.fromJson(jsonDecode(jsonString));
   return userEntity;
 }
