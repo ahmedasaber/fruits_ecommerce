@@ -6,7 +6,7 @@ import 'package:fruits_ecommerce/core/helper_function/get_current_localization.d
 import 'package:fruits_ecommerce/core/services/firebase_auth_service.dart';
 import 'package:fruits_ecommerce/core/services/shared_preferences_singleton.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/signIn_view.dart';
-import 'package:fruits_ecommerce/features/home/presentation/views/home_view.dart';
+import 'package:fruits_ecommerce/features/home/presentation/views/main_view.dart';
 import 'package:fruits_ecommerce/features/onboarding/presentaion/views/onboarding_view.dart';
 
 class SplashViewBody extends StatefulWidget{
@@ -45,7 +45,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       if(onBoardingViewSeen){
         var isLoggIn = FirebaseAuthService().isLoggIn();
         if (isLoggIn) {
-          Navigator.pushReplacementNamed(context, HomeView.routeName);
+          Navigator.pushReplacementNamed(context, MainView.routeName);
         }else{
           Navigator.pushReplacementNamed(context, SignInView.routeName);
         }

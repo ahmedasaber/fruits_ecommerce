@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_ecommerce/core/products%20cubit/products_cubit.dart';
 import 'package:fruits_ecommerce/core/widget/custom_search_textfield.dart';
-import 'package:fruits_ecommerce/features/home/presentation/views/widgets/active_bottom_bar_item.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/best_selling_grid_view.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/best_selling_header.dart';
-import 'package:fruits_ecommerce/features/home/presentation/views/widgets/custom_home_app_bar.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/featured_list.dart';
 
-class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
+import 'custom_home_app_bar.dart';
 
+class HomeViewBody extends StatefulWidget {
+  const HomeViewBody({
+    super.key,
+  });
+
+  @override
+  State<HomeViewBody> createState() => _HomeViewBodyState();
+}
+
+class _HomeViewBodyState extends State<HomeViewBody> {
+  @override
+  void initState() {
+    context.read<ProductsCubit>().loadBestSellingProducts();
+    context.read<ProductsCubit>().loadProducts();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
