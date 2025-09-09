@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_ecommerce/core/products%20cubit/products_cubit.dart';
 import 'package:fruits_ecommerce/core/widget/custom_search_textfield.dart';
-import 'package:fruits_ecommerce/features/home/presentation/views/widgets/best_selling_grid_view.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/best_selling_header.dart';
+import 'package:fruits_ecommerce/features/home/presentation/views/widgets/best_selling_view_bloc_builder.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/featured_list.dart';
 
 import 'custom_home_app_bar.dart';
@@ -45,7 +45,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 ],
               ),
             ),
-            BestSellingGridView(),
+            BestSellingGridViewBlocBuilder(),
           ],
         ),
       ),

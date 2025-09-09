@@ -34,7 +34,7 @@ class ProductModel extends ProductEntity {
         unitAmount: jsonData['unitAmount'],
         isOrganic: jsonData['isOrganic'],
         reviews: jsonData['reviews'] != null
-            ? List<ReviewModel>.of(jsonData['reviews'].map((e)=>ReviewModel.fromJson(e))).toList()
+            ? List<ReviewModel>.from(jsonData['reviews'].map((e)=>ReviewModel.fromJson(e as Map<String, dynamic>))).toList()
             : [],
         sellingCount: jsonData['sellingCount']
     );
