@@ -8,21 +8,21 @@ class BestSellingHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text('الأكثر مبيعًا', style: TextStyles.bold16),
-        Spacer(),
-        GestureDetector(
-          onTap: (){
-            Navigator.pushNamed(context, BestSellingFruitsView.routeName);
-          },
-          child: Text('المزيد',
+    return GestureDetector(
+      onTap: (){
+        Navigator.pushNamed(context, BestSellingFruitsView.routeName);
+      },
+      child: Row(
+        children: [
+          Text('الأكثر مبيعًا', style: TextStyles.bold16),
+          Spacer(),
+          Text('المزيد',
             style: TextStyles.regular13.copyWith(
               color: AppColors.hintTextColor,
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

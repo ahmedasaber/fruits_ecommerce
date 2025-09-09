@@ -1,4 +1,6 @@
 import 'package:fruits_ecommerce/core/entities/product_entity.dart';
+import 'package:fruits_ecommerce/core/entities/review_entity.dart';
+import 'package:fruits_ecommerce/core/helper_function/get_avg_rating.dart';
 import 'package:fruits_ecommerce/core/models/review_model.dart';
 
 class ProductModel extends ProductEntity {
@@ -17,6 +19,7 @@ class ProductModel extends ProductEntity {
     required super.unitAmount,
     required super.isOrganic,
     required super.reviews,
+    required super.avgRating,
     required this.sellingCount,
   });
 
@@ -27,15 +30,16 @@ class ProductModel extends ProductEntity {
         description: jsonData['description'],
         price: jsonData['price'],
         image: jsonData['image'],
+        avgRating: getAvgRating(
+            toReviewModels(jsonData['reviews'])
+        ),
         isFeatured: jsonData['isFeatured'],
         imageUrl: jsonData['imageUrl'] ?? 'https://www.svgrepo.com/show/508699/landscape-placeholder.svg',
         expirationsMonth: jsonData['expirationsMonth'],
         numOfCalories: jsonData['numOfCalories'],
         unitAmount: jsonData['unitAmount'],
         isOrganic: jsonData['isOrganic'],
-        reviews: jsonData['reviews'] != null
-            ? List<ReviewModel>.from(jsonData['reviews'].map((e)=>ReviewModel.fromJson(e as Map<String, dynamic>))).toList()
-            : [],
+        reviews: toReviewModels(jsonData['reviews']),
         sellingCount: jsonData['sellingCount']
     );
   }
@@ -71,6 +75,7 @@ class ProductModel extends ProductEntity {
       unitAmount: unitAmount,
       isOrganic: isOrganic,
       reviews: reviews,
+      avgRating: avgRating,
     );
   }
 
@@ -86,7 +91,15 @@ class ProductModel extends ProductEntity {
       'isOrganic': isOrganic,
       'numOfCalories': numOfCalories,
       'unitAmount': unitAmount,
-      'reviews': reviews.map((e) => e.toMap()).toList(),
+      'reviews': reviews.map((e) => ReviewModel.fromEntity(e).toMap()).toList(),
+      'avgRating': avgRating,
     };
   }
+}
+
+List<ReviewEntity> toReviewModels(List<dynamic>? jsonData) {
+  return jsonData != null
+    ? (jsonData)
+    .map((e) => ReviewModel.fromJson(e as Map<String, dynamic>) as ReviewEntity,).toList()
+    : <ReviewEntity>[];
 }

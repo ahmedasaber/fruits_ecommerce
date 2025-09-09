@@ -3,8 +3,8 @@ import 'package:fruits_ecommerce/features/home/domain/entites/bottom_navigation_
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/bottom_naviagtion_bar_item.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key});
-
+  const CustomBottomNavigationBar({super.key, required this.onItemTap});
+  final ValueChanged<int> onItemTap;
   @override
   State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
 }
@@ -37,13 +37,16 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         children: BottomNavigationBarEntity.bottomNavigationBarItems.asMap().entries.map((e) {
           var index = e.key;
           var entity = e.value;
-          return GestureDetector(
-            onTap: (){
-              setState(() {
-                selectedIndex = index;
-              });
-            },
-            child: NavigationBarItem(isSelected: index == selectedIndex, barEntity: entity,)
+          return Expanded(
+            child: GestureDetector(
+              onTap: (){
+                setState(() {
+                  selectedIndex = index;
+                  widget.onItemTap(index);
+                });
+              },
+              child: NavigationBarItem(isSelected: index == selectedIndex, barEntity: entity,)
+            ),
           );
         }).toList()
       ),

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce/core/entities/product_entity.dart';
 import 'package:fruits_ecommerce/core/widget/fruit_item.dart';
 
-class BestSellingGridView extends StatelessWidget {
-  const BestSellingGridView({super.key, required this.products});
+class ProductsGridView extends StatelessWidget {
+  const ProductsGridView({super.key, required this.products});
 
   final List<ProductEntity> products;
   @override
@@ -15,11 +15,10 @@ class BestSellingGridView extends StatelessWidget {
         mainAxisSpacing: 8,
         mainAxisExtent: 214
       ),
-      itemCount: 6,
+      itemCount: products.length,
       itemBuilder: (BuildContext context, int index) {
-        return const FruitItem();
+        return FruitItem(product: products[index],);
       },
-
     );
   }
 }

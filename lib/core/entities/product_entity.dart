@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:fruits_ecommerce/core/models/review_model.dart';
+import 'package:fruits_ecommerce/core/entities/review_entity.dart';
 
 class ProductEntity {
   final String name;
@@ -13,9 +13,9 @@ class ProductEntity {
   final bool isOrganic;
   final int numOfCalories;
   final int unitAmount;
-  final num avgRating = 0;
+  final num avgRating;
   final num ratingCount = 0;
-  final List<ReviewModel> reviews;
+  final List<ReviewEntity> reviews;
 
   ProductEntity({
     required this.name,
@@ -26,6 +26,7 @@ class ProductEntity {
     required this.isFeatured,
     this.imageUrl,
     required this.expirationsMonth,
+    required this.avgRating,
     this.isOrganic = false,
     required this.numOfCalories,
     required this.unitAmount,
