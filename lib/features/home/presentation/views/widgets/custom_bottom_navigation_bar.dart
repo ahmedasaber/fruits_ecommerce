@@ -32,23 +32,40 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           )
         ]
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: BottomNavigationBarEntity.bottomNavigationBarItems.asMap().entries.map((e) {
-          var index = e.key;
-          var entity = e.value;
-          return Expanded(
-            child: GestureDetector(
-              onTap: (){
-                setState(() {
-                  selectedIndex = index;
-                  widget.onItemTap(index);
-                });
-              },
-              child: NavigationBarItem(isSelected: index == selectedIndex, barEntity: entity,)
-            ),
-          );
-        }).toList()
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: BottomNavigationBarEntity.bottomNavigationBarItems.asMap().entries.map((e) {
+            var index = e.key;
+            var entity = e.value;
+            if (index == selectedIndex) {
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedIndex = index;
+                    widget.onItemTap(index);
+                  });
+                },
+                  child: NavigationBarItem(isSelected: true, barEntity: entity,
+                ),
+              );
+            } else {
+              return Expanded(
+                flex: 3,
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedIndex = index;
+                      widget.onItemTap(index);
+                    });
+                  },
+                  child: NavigationBarItem(isSelected: false, barEntity: entity,),
+                ),
+              );
+            }
+          }).toList()
+        ),
       ),
     );
   }

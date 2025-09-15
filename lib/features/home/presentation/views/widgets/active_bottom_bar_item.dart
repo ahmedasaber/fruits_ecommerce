@@ -29,15 +29,14 @@ class ActiveItem extends StatelessWidget {
             ),
             child: Center(child: SvgPicture.asset(iconPath)),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              label,
-              style: TextStyles.semiBold11.copyWith(
-                color: AppColors.primaryColor,
-              ),
+          SizedBox(width: 4,),
+          Text(
+            label,
+            style: TextStyles.semiBold11.copyWith(
+              color: AppColors.primaryColor,
             ),
           ),
+          SizedBox(width: 8,),
         ],
       ),
     );

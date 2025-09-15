@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce/core/entities/product_entity.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/core/widget/custon_network_image.dart';
+import 'package:fruits_ecommerce/features/home/presentation/views/widgets/circular_icon_bt.dart';
 
 import '../utils/app_colors.dart' show AppColors;
 
@@ -57,10 +58,7 @@ class FruitItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                  CircleAvatar(
-                    backgroundColor: AppColors.primaryColor,
-                    child: IconButton(onPressed: (){}, icon: Icon(Icons.add), color: Colors.white,),
-                  ),
+                  CircularIconBt(onPressed: (){}, icon: Icon(Icons.add), iconColor: Colors.white,),
                 ],
               ),
             ],
