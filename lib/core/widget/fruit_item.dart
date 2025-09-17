@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_ecommerce/core/entities/product_entity.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/core/widget/custon_network_image.dart';
+import 'package:fruits_ecommerce/features/home/presentation/cubit/cart/cart_cubit.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/circular_icon_bt.dart';
 
 import '../utils/app_colors.dart' show AppColors;
@@ -58,7 +60,9 @@ class FruitItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                  CircularIconBt(onPressed: (){}, icon: Icon(Icons.add), iconColor: Colors.white,),
+                  CircularIconBt(onPressed: (){
+                    context.read<CartCubit>().addProduct(product);
+                  }, icon: Icon(Icons.add), iconColor: Colors.white,),
                 ],
               ),
             ],

@@ -19,6 +19,8 @@ class CartItemEntity{
   }
 
   decreaseCount(){
-    count--;
+    if (count > 1) {
+      count--;
+    }
   }
 }

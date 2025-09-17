@@ -58,7 +58,8 @@ class FruitHub extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.white
+          backgroundColor: Colors.white,
+          scrolledUnderElevation: 0,
         )
       ),
 
