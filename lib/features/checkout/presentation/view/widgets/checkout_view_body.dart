@@ -32,14 +32,14 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       child: Column(
         children: [
           SizedBox(height: 16,),
-          CheckoutSteps(),
+          CheckoutSteps(pageController: pageController),
           SizedBox(height: 16,),
           Expanded(child: CheckoutStepsPageView(pageController: pageController)),
           SizedBox(height: 16,),
           CustomButton(
             text: 'التالي',
             onPressed: (){
-
+              pageController.nextPage(duration: Duration(milliseconds: 300), curve: Curves.bounceIn);
             }
           ),
           SizedBox(height: 16,),
