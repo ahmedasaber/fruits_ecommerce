@@ -26,10 +26,10 @@ class _MainViewState extends State<MainView> {
         body: BlocListener<CartCubit, CartState>(
           listener: (context, state) {
             if(state is CartItemAdded){
-              buildErrorBar(context, 'تم الاضافة الي السلة', backgroundColor: AppColors.primaryColor, durationInSec: 1);
+              showErrorBar(context, 'تم الاضافة الي السلة', backgroundColor: AppColors.primaryColor, durationInSec: 1);
             }
             if(state is CartItemRemoved){
-              buildErrorBar(context, 'تم الازالة من السلة', backgroundColor: Colors.red, durationInSec: 1);
+              showErrorBar(context, 'تم الازالة من السلة', backgroundColor: Colors.red, durationInSec: 1);
             }
           },
          child:  MainViewBody(selectedIndex: selectedIndex),

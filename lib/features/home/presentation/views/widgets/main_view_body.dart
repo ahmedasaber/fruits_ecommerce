@@ -19,7 +19,7 @@ class MainViewBody extends StatelessWidget {
         HomeView(),
         ProductsView(),
         CartView(),
-        ProductsView(),
+        SizedBox(),
       ],
     );
   }
