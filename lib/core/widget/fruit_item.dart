@@ -34,31 +34,33 @@ class FruitItem extends StatelessWidget {
                     : Image.asset('assets/images/fruit-image.png', fit: BoxFit.cover,)
                 )
               ),
-              SizedBox(height: 24,),
+              SizedBox(height: 16,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(product.name, style: TextStyles.semiBold13,),
-                      SizedBox(height: 7,),
-                      Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: '${product.price}جنية ',
-                              style: TextStyles.bold13.copyWith(color: AppColors.secondaryColor)
-                            ),
-                            TextSpan(
-                              text: '/ الكيلو',
-                              style: TextStyles.bold13.copyWith(color: AppColors.lightSecondaryColor)
-                            ),
-                          ]
-                        )
-                      ),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(product.name, style: TextStyles.semiBold13,),
+                        SizedBox(height: 7,),
+                        Text.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: '${product.price}جنية ',
+                                style: TextStyles.bold13.copyWith(color: AppColors.secondaryColor)
+                              ),
+                              TextSpan(
+                                text: '/ الكيلو',
+                                style: TextStyles.bold13.copyWith(color: AppColors.lightSecondaryColor)
+                              ),
+                            ]
+                          )
+                        ),
+                      ],
+                    ),
                   ),
                   CircularIconBt(onPressed: (){
                     context.read<CartCubit>().addProduct(product);
@@ -67,13 +69,9 @@ class FruitItem extends StatelessWidget {
               ),
             ],
           ),
-          Stack(
-            children: [
-              Align(
-                  alignment: Alignment.topRight,
-                  child: Icon(Icons.favorite_border_outlined)
-              ),
-            ],
+          Align(
+            alignment: Alignment.topRight,
+            child: Icon(Icons.favorite_border_outlined)
           ),
         ],
       ),
