@@ -15,7 +15,8 @@ class CheckoutViewBody extends StatefulWidget {
 
 class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   late PageController pageController;
-
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  ValueNotifier<AutovalidateMode> autoValidateModeNotifier = ValueNotifier(AutovalidateMode.disabled);
   @override
   void initState() {
     pageController = PageController();
@@ -29,6 +30,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   @override
   void dispose() {
     pageController.dispose();
+    autoValidateModeNotifier.dispose();
     super.dispose();
   }
   int currentPage = 0;
@@ -41,19 +43,15 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           SizedBox(height: 16,),
           CheckoutSteps(currentPage: currentPage, pageController: pageController,),
           SizedBox(height: 16,),
-          Expanded(child: CheckoutStepsPageView(pageController: pageController)),
+          Expanded(child: CheckoutStepsPageView(formKey:_formKey,pageController: pageController, valueListenable: autoValidateModeNotifier,)),
           SizedBox(height: 16,),
           CustomButton(
             text: getNextBtText(currentPage),
             onPressed: (){
-              if (context.read<OrderEntity>().payWithCash != null) {
-                pageController.animateToPage(currentPage+1,duration: Duration(milliseconds: 300), curve: Curves.bounceIn);
-                if(currentPage==2){
-                  // todo navigation to
-                  //Navigator.pushNamed(context, MainView.routeName);
-                }
-              }else{
-                showErrorBar(context, 'يرجى تحديد طريقه الدفع', backgroundColor: Colors.red, durationInSec: 1);
+              if (currentPage == 0) {
+                _handeShippingSection(context);
+              }else if(currentPage == 1){
+                _handeAddressSection(context);
               }
             }
           ),
@@ -61,6 +59,23 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         ],
       ),
     );
+  }
+
+  void _handeShippingSection(BuildContext context) {
+    if (context.read<OrderEntity>().payWithCash != null) {
+      pageController.animateToPage(currentPage+1,duration: Duration(milliseconds: 300), curve: Curves.bounceIn);
+    }else{
+      showErrorBar(context, 'يرجى تحديد طريقه الدفع', backgroundColor: Colors.red, durationInSec: 1);
+    }
+  }
+
+  void  _handeAddressSection(BuildContext context) {
+    if(_formKey.currentState!.validate()){
+      _formKey.currentState!.save();
+      pageController.animateToPage(currentPage+1,duration: Duration(milliseconds: 300), curve: Curves.bounceIn);
+    }else{
+      autoValidateModeNotifier.value = AutovalidateMode.always;
+    }
   }
 
   String getNextBtText(int currPage) {
