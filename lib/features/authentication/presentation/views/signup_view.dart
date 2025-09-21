@@ -23,14 +23,14 @@ class SignUpView extends StatelessWidget {
         body: BlocConsumer<SignupCubit, SignupState>(
           listener: (context, state) {
             if (state is SignupSuccess){
-              buildErrorBar(context,'success');
+              showErrorBar(context,'success');
               Future.delayed(Duration(seconds: 2), () {
                 if (context.mounted) {
                   Navigator.pop(context);
                 }
               });
             }else if (state is SignupFailure){
-              buildErrorBar(context,state.message);
+              showErrorBar(context,state.message);
             }
           },
           builder: (context, state) {

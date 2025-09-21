@@ -72,7 +72,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     if (isAcceptTerms) {
                       context.read<SignupCubit>().createAccount(context,name.trim(), email.trim(), password.trim());
                     }else{
-                      buildErrorBar(context, S.of(context).mustAcceptTerms);
+                      showErrorBar(context, S.of(context).mustAcceptTerms);
                     }
                   }else{
                     autoValidateMode = AutovalidateMode.always;
