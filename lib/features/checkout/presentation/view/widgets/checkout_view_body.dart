@@ -52,6 +52,8 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                 _handeShippingSection(context);
               }else if(currentPage == 1){
                 _handeAddressSection(context);
+              }else if(currentPage == 2){
+
               }
             }
           ),

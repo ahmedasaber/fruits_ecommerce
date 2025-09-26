@@ -3,7 +3,8 @@ import 'package:fruits_ecommerce/features/checkout/presentation/view/widgets/del
 import 'package:fruits_ecommerce/features/checkout/presentation/view/widgets/order_summary.dart';
 
 class Payment extends StatelessWidget {
-  const Payment({super.key});
+  const Payment({super.key, required this.pageController});
+  final PageController pageController;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class Payment extends StatelessWidget {
         SizedBox(height: 24,),
         OrderSummary(),
         SizedBox(height: 16,),
-        DeliveryAddress(),
+        DeliveryAddress(pageController: pageController,),
       ],
     );
   }
