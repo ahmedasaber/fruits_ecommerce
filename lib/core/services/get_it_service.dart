@@ -1,5 +1,7 @@
-import 'package:fruits_ecommerce/core/repos/products_repo.dart';
-import 'package:fruits_ecommerce/core/repos/products_repo_impl.dart';
+import 'package:fruits_ecommerce/core/repos/order_repo/order_repo.dart';
+import 'package:fruits_ecommerce/core/repos/order_repo/order_repo_impl.dart';
+import 'package:fruits_ecommerce/core/repos/products_repo/products_repo.dart';
+import 'package:fruits_ecommerce/core/repos/products_repo/products_repo_impl.dart';
 import 'package:fruits_ecommerce/core/services/database_service.dart';
 import 'package:fruits_ecommerce/core/services/fire_store_service.dart';
 import 'package:fruits_ecommerce/core/services/firebase_auth_service.dart';
@@ -21,4 +23,5 @@ void setupGetIt() {
   );
 
   getIt.registerSingleton<ProductsRepo>(ProductsRepoImpl(databaseService: getIt<DatabaseService>()));
+  getIt.registerSingleton<OrdersRepo>(OrdersRepoImpl(databaseService: getIt<DatabaseService>(),));
 }
