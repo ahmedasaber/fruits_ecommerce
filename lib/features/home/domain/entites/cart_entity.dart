@@ -21,7 +21,7 @@ class CartEntity{
     for(var cartItem in cartItems){
       if(cartItem.productEntity.code == productEntity.code) return cartItem;
     }
-    return CartItemEntity(productEntity: productEntity, count: 1);
+    return CartItemEntity(productEntity: productEntity, quantity: 1);
   }
 
   double calculateTotalPrice(){

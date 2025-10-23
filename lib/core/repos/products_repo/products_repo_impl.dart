@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:fruits_ecommerce/core/entities/product_entity.dart';
 import 'package:fruits_ecommerce/core/errors/failures.dart';
 import 'package:fruits_ecommerce/core/models/product_model.dart';
-import 'package:fruits_ecommerce/core/repos/products_repo.dart';
+import 'package:fruits_ecommerce/core/repos/products_repo/products_repo.dart';
 import 'package:fruits_ecommerce/core/services/database_service.dart';
 import 'package:fruits_ecommerce/core/utils/backend_endpoints.dart';
 

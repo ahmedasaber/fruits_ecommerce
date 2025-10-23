@@ -2,25 +2,25 @@ import 'package:fruits_ecommerce/core/entities/product_entity.dart';
 
 class CartItemEntity{
   final ProductEntity productEntity;
-  int count;
+  int quantity;
 
-  CartItemEntity({required this.productEntity, this.count = 0});
+  CartItemEntity({required this.productEntity, this.quantity = 0});
 
   num calculateTotalPrice(){
-    return productEntity.price * count;
+    return productEntity.price * quantity;
   }
 
   num calculateTotalAmount(){
-    return productEntity.unitAmount * count;
+    return productEntity.unitAmount * quantity;
   }
 
   increaseCount(){
-    count++;
+    quantity++;
   }
 
   decreaseCount(){
-    if (count > 1) {
-      count--;
+    if (quantity > 1) {
+      quantity--;
     }
   }
 }

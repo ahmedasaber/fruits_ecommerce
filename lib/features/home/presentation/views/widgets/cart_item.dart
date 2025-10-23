@@ -74,7 +74,7 @@ class CartItem extends StatelessWidget {
                                     }, icon: Icon(Icons.add), iconColor: Colors.white,)
                                   ),
                                   SizedBox(width: 16,),
-                                  Text('${cartItemEntity.count}', style: TextStyles.bold16,),
+                                  Text('${cartItemEntity.quantity}', style: TextStyles.bold16,),
                                   SizedBox(width: 16,),
                                   Transform.scale(
                                     scale: 0.8,
