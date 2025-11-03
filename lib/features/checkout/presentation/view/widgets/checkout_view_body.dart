@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:fruits_ecommerce/core/helper_function/error_snack_bar.dart';
+import 'package:fruits_ecommerce/core/utils/app_keys.dart';
 import 'package:fruits_ecommerce/core/widget/custom_button.dart';
 import 'package:fruits_ecommerce/features/checkout/domain/enities/order_entity.dart';
+import 'package:fruits_ecommerce/features/checkout/domain/enities/payment%20entity/payment_entity.dart';
+import 'package:fruits_ecommerce/features/checkout/presentation/add_order_cubit/add_order_cubit.dart';
 import 'package:fruits_ecommerce/features/checkout/presentation/view/widgets/checkout_steps.dart';
 import 'package:fruits_ecommerce/features/checkout/presentation/view/widgets/checkout_steps_page_view.dart';
 
@@ -41,7 +45,20 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       child: Column(
         children: [
           SizedBox(height: 16,),
-          CheckoutSteps(currentPage: currentPage, pageController: pageController,),
+          CheckoutSteps(currentPage: currentPage, pageController: pageController, onTap: (int i) {
+            if (i == 0) {
+              pageController.animateToPage(i, duration: Duration(milliseconds: 300), curve:Curves.bounceIn);
+            }else if(i == 1){
+              var orderEntity = context.read<OrderEntity>();
+              if (orderEntity.payWithCash != null) {
+                pageController.animateToPage(i, duration: Duration(milliseconds: 300), curve:Curves.bounceIn);
+              }else{
+                showErrorBar(context, 'يرجى تحديد طريقه الدفع', backgroundColor: Colors.red, durationInSec: 1);
+              }
+            }else{
+              _handeAddressSection(context);
+            }
+          },),
           SizedBox(height: 16,),
           Expanded(child: CheckoutStepsPageView(formKey:_formKey,pageController: pageController, valueListenable: autoValidateModeNotifier,)),
           SizedBox(height: 16,),
@@ -52,8 +69,8 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
                 _handeShippingSection(context);
               }else if(currentPage == 1){
                 _handeAddressSection(context);
-              }else if(currentPage == 2){
-
+              }else {
+                _processPayment(context);
               }
             }
           ),
@@ -61,6 +78,34 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
         ],
       ),
     );
+  }
+
+  void _processPayment(BuildContext context) {
+    var orderEntity = context.read<OrderEntity>();
+    var addOrderCubit = context.read<AddOrderCubit>();
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) => PaypalCheckoutView(
+        sandboxMode: true, // testing process?
+        clientId: kPaypalClientId,
+        secretKey: kPaypalSecretKey,
+        transactions: [
+          PaypalPaymentEntity.fromEntity(orderEntity).toJson(),
+        ],
+        note: "Contact us for any questions on your order.",
+        onSuccess: (Map params) async {
+          Navigator.pop(context);
+          addOrderCubit.addOrder(orderEntity);
+          print("onSuccess: $params");
+        },
+        onError: (error) {
+          print("onError: $error");
+          Navigator.pop(context);
+        },
+        onCancel: () {
+          print('cancelled:');
+        },
+      ),
+    ));
   }
 
   void _handeShippingSection(BuildContext context) {
