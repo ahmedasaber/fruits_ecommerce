@@ -16,7 +16,7 @@ class _ShippingSectionState extends State<ShippingSection> with AutomaticKeepAli
   Widget build(BuildContext context) {
     super.build(context);
     int shippingValue = 40;
-    var orderEntity = context.read<OrderEntity>();
+    var orderEntity = context.read<OrderInputEntity>();
     var totalPrice = orderEntity.cartEntity.calculateTotalPrice();
     return Column(
       children: [

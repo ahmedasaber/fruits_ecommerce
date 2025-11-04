@@ -13,7 +13,7 @@ class AmountEntity {
     required this.details,
   });
 
-  factory AmountEntity.fromEntity(OrderEntity entity) {
+  factory AmountEntity.fromEntity(OrderInputEntity entity) {
     return AmountEntity(
       total: entity.calcTotalPriceAfterShippingAndDiscount().toString(),
       currency: getCurrency(),

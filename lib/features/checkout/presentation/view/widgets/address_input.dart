@@ -12,7 +12,7 @@ class AddressInput extends StatelessWidget {
   final ValueListenable<AutovalidateMode> valueListenable;
   @override
   Widget build(BuildContext context) {
-    var orderAddress= context.read<OrderEntity>().shippingAddressEntity;
+    var orderAddress= context.read<OrderInputEntity>().shippingAddressEntity;
     return SingleChildScrollView(
       child: ValueListenableBuilder(
         valueListenable: valueListenable,

@@ -13,7 +13,7 @@ class PaypalPaymentEntity {
     required this.itemList,
   });
 
-  factory PaypalPaymentEntity.fromEntity(OrderEntity entity) {
+  factory PaypalPaymentEntity.fromEntity(OrderInputEntity entity) {
     return PaypalPaymentEntity(
       amount: AmountEntity.fromEntity(entity),
       description: 'The payment transaction description.',

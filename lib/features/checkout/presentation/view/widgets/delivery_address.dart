@@ -13,7 +13,7 @@ class DeliveryAddress extends StatelessWidget {
   final PageController pageController;
   @override
   Widget build(BuildContext context) {
-    var shippingAddress = context.read<OrderEntity>().shippingAddressEntity;
+    var shippingAddress = context.read<OrderInputEntity>().shippingAddressEntity;
     return PaymentItem(
       title: 'عنوان التوصيل :',
       child: Container(

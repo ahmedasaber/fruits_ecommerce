@@ -12,7 +12,7 @@ class OrderSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var orderEntity = context.read<OrderEntity>().cartEntity;
+    var orderEntity = context.read<OrderInputEntity>().cartEntity;
     return PaymentItem(
       title: 'ملخص الطلب :',
       child: Padding(

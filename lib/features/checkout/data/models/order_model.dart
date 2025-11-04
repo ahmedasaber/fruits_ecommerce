@@ -17,7 +17,7 @@ class OrderModel {
     required this.paymentMethod,
   });
 
-  factory OrderModel.fromEntity(OrderEntity entity){
+  factory OrderModel.fromEntity(OrderInputEntity entity){
     return OrderModel(
         totalPrice: entity.cartEntity.calculateTotalPrice(),
         uld: entity.uID,

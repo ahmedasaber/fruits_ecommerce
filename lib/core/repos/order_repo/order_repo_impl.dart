@@ -12,7 +12,7 @@ class OrdersRepoImpl extends OrdersRepo {
   OrdersRepoImpl({required this.databaseService});
 
   @override
-  Future<Either<Failure, void>> addOrder({required OrderEntity orderEntity}) async{
+  Future<Either<Failure, void>> addOrder({required OrderInputEntity orderEntity}) async{
     try {
       OrderModel orderModel = OrderModel.fromEntity(orderEntity);
       await databaseService.addData(path: BackEndEndPoints.addOrder, data: orderModel.toJson());

@@ -49,7 +49,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
             if (i == 0) {
               pageController.animateToPage(i, duration: Duration(milliseconds: 300), curve:Curves.bounceIn);
             }else if(i == 1){
-              var orderEntity = context.read<OrderEntity>();
+              var orderEntity = context.read<OrderInputEntity>();
               if (orderEntity.payWithCash != null) {
                 pageController.animateToPage(i, duration: Duration(milliseconds: 300), curve:Curves.bounceIn);
               }else{
@@ -81,7 +81,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   }
 
   void _processPayment(BuildContext context) {
-    var orderEntity = context.read<OrderEntity>();
+    var orderEntity = context.read<OrderInputEntity>();
     var addOrderCubit = context.read<AddOrderCubit>();
     Navigator.of(context).push(MaterialPageRoute(
       builder: (BuildContext context) => PaypalCheckoutView(
@@ -109,7 +109,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   }
 
   void _handeShippingSection(BuildContext context) {
-    if (context.read<OrderEntity>().payWithCash != null) {
+    if (context.read<OrderInputEntity>().payWithCash != null) {
       pageController.animateToPage(currentPage+1,duration: Duration(milliseconds: 300), curve: Curves.bounceIn);
     }else{
       showErrorBar(context, 'يرجى تحديد طريقه الدفع', backgroundColor: Colors.red, durationInSec: 1);
