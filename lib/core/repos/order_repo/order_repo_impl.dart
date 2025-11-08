@@ -15,7 +15,7 @@ class OrdersRepoImpl extends OrdersRepo {
   Future<Either<Failure, void>> addOrder({required OrderInputEntity orderEntity}) async{
     try {
       OrderModel orderModel = OrderModel.fromEntity(orderEntity);
-      await databaseService.addData(path: BackEndEndPoints.addOrder, data: orderModel.toJson());
+      await databaseService.addData(path: BackEndEndPoints.addOrder, docId: orderModel.orderId,data: orderModel.toJson());
       return const Right(null);
     } catch (e) {
       return Left(ServerFailure(e.toString()));
