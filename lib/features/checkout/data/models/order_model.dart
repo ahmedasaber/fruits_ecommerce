@@ -1,7 +1,6 @@
 import 'package:fruits_ecommerce/features/checkout/data/models/order_product_model.dart';
 import 'package:fruits_ecommerce/features/checkout/data/models/shipping_address_model.dart';
 import 'package:fruits_ecommerce/features/checkout/domain/enities/order_entity.dart';
-import 'package:uuid/uuid.dart';
 
 class OrderModel {
   final String orderId;
@@ -22,7 +21,7 @@ class OrderModel {
 
   factory OrderModel.fromEntity(OrderInputEntity entity){
     return OrderModel(
-        orderId: Uuid().v4(),
+        orderId: entity.orderId,
         totalPrice: entity.cartEntity.calculateTotalPrice(),
         uld: entity.uID,
         shippingAddressModel: ShippingAddressModel.fromEntity(entity.shippingAddressEntity),

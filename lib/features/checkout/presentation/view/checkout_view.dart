@@ -11,6 +11,7 @@ import 'package:fruits_ecommerce/features/checkout/presentation/view/widgets/add
 import 'package:fruits_ecommerce/features/checkout/presentation/view/widgets/checkout_view_body.dart';
 import 'package:fruits_ecommerce/features/home/domain/entites/cart_entity.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 class CheckoutView extends StatefulWidget {
   const CheckoutView({super.key, required this.cartEntity});
@@ -27,7 +28,7 @@ class _CheckoutViewState extends State<CheckoutView> {
   @override
   void initState() {
     super.initState();
-    orderEntity = OrderInputEntity(cartEntity: widget.cartEntity, shippingAddressEntity: ShippingAddressEntity(), uID: getUser().uId);
+    orderEntity = OrderInputEntity(cartEntity: widget.cartEntity, shippingAddressEntity: ShippingAddressEntity(), uID: getUser().uId, orderId: Uuid().v4());
   }
   @override
   Widget build(BuildContext context) {

@@ -83,29 +83,34 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   void _processPayment(BuildContext context) {
     var orderEntity = context.read<OrderInputEntity>();
     var addOrderCubit = context.read<AddOrderCubit>();
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (BuildContext context) => PaypalCheckoutView(
-        sandboxMode: true, // testing process?
-        clientId: kPaypalClientId,
-        secretKey: kPaypalSecretKey,
-        transactions: [
-          PaypalPaymentEntity.fromEntity(orderEntity).toJson(),
-        ],
-        note: "Contact us for any questions on your order.",
-        onSuccess: (Map params) async {
-          Navigator.pop(context);
-          addOrderCubit.addOrder(orderEntity);
-          print("onSuccess: $params");
-        },
-        onError: (error) {
-          print("onError: $error");
-          Navigator.pop(context);
-        },
-        onCancel: () {
-          print('cancelled:');
-        },
-      ),
-    ));
+    if (orderEntity.payWithCash!) {
+      addOrderCubit.addOrder(orderEntity);
+    }
+    else {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (BuildContext context) =>
+          PaypalCheckoutView(
+            sandboxMode: true,
+            // testing process?
+            clientId: kPaypalClientId,
+            secretKey: kPaypalSecretKey,
+            transactions: [
+              PaypalPaymentEntity.fromEntity(orderEntity).toJson(),
+            ],
+            note: 'Contact us for any questions on your order.',
+            onSuccess: (Map params) async {
+              addOrderCubit.addOrder(orderEntity);
+            },
+            onError: (error) {
+              showErrorBar(context, 'onError: $error');
+              Navigator.pop(context);
+            },
+            onCancel: () {
+              showErrorBar(context, 'cancelled');
+            },
+          ),
+      ));
+    }
   }
 
   void _handeShippingSection(BuildContext context) {
@@ -132,7 +137,11 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       case 1:
         return 'التالي';
       case 2:
-        return 'الدفع عن طريق paypal';
+        if(context.read<OrderInputEntity>().payWithCash!){
+          return 'تأكيد الطلب';
+        }else{
+          return 'الدفع عن طريق paypal';
+        }
       default:
         return 'التالي';
     }

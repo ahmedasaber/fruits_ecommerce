@@ -10,4 +10,8 @@ final class AddOrderFailure extends AddOrderState {
 
   AddOrderFailure({required this.errMessage});
 }
-final class AddOrderSuccess extends AddOrderState {}
+final class AddOrderSuccess extends AddOrderState {
+  final OrderInputEntity orderEntity;
+
+  AddOrderSuccess({required this.orderEntity});
+}
