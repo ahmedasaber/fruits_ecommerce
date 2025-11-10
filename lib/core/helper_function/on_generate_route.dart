@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_ecommerce/core/widget/notification_view.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/signIn_view.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/signup_view.dart';
 import 'package:fruits_ecommerce/features/best_selling_fruits/presentaion/views/best_selling_fruits_view.dart';
@@ -29,6 +30,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings){
       ));
     case PaymentSuccessPage.routeName:
       return MaterialPageRoute(builder: (context) => PaymentSuccessPage(orderId: settings.arguments as String));
+    case NotificationView.routeName:
+      return MaterialPageRoute(builder: (context) => NotificationView());
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }
