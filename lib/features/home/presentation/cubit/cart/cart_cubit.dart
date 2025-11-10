@@ -21,15 +21,6 @@ class CartCubit extends Cubit<CartState> {
       emit(CartItemAdded());
     }
   }
-
-  void decreaseItems(ProductEntity productEntity){
-    bool productIsExist = cartEntity.isExist(productEntity);
-    CartItemEntity cartItemEntity = cartEntity.getCartItem(productEntity);
-    if(productIsExist){
-      cartItemEntity.decreaseCount();
-      emit(CartIteDecrease());
-    }
-  }
   void deleteCartItem(CartItemEntity cartItem){
     cartEntity.deleteCartItem(cartItem);
     emit(CartItemRemoved());

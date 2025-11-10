@@ -49,7 +49,7 @@ class FruitItem extends StatelessWidget {
                           TextSpan(
                             children: [
                               TextSpan(
-                                text: '${product.price}جنية ',
+                                text: '£${product.price} ',
                                 style: TextStyles.bold13.copyWith(color: AppColors.secondaryColor)
                               ),
                               TextSpan(

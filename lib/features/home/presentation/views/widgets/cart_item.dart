@@ -68,7 +68,6 @@ class CartItem extends StatelessWidget {
                                   Transform.scale(
                                     scale: 0.8,
                                     child: CircularIconBt(onPressed: (){
-                                      //context.read<CartCubit>().addProduct(cartItemEntity.productEntity);
                                       cartItemEntity.increaseCount();
                                       context.read<CartItemCubit>().updateCartItem(cartItemEntity);
                                     }, icon: Icon(Icons.add), iconColor: Colors.white,)
@@ -79,7 +78,6 @@ class CartItem extends StatelessWidget {
                                   Transform.scale(
                                     scale: 0.8,
                                     child: CircularIconBt(onPressed: (){
-                                      //context.read<CartCubit>().decreaseItems(cartItemEntity.productEntity);
                                       cartItemEntity.decreaseCount();
                                       context.read<CartItemCubit>().updateCartItem(cartItemEntity);
                                     }, icon: Icon(Icons.remove), iconColor: Colors.black, backgroundColor: AppColors.lightGreyColor,),
@@ -88,7 +86,7 @@ class CartItem extends StatelessWidget {
                               ),
                             ),
                             Spacer(),
-                            Text('${cartItemEntity.calculateTotalPrice()} جنيه ', style: TextStyles.bold16.copyWith(color: AppColors.secondaryColor),),
+                            Text('${cartItemEntity.calculateTotalPrice().toStringAsFixed(2)} جنيه ', style: TextStyles.bold16.copyWith(color: AppColors.secondaryColor),),
                           ],
                         ),
                       ],
