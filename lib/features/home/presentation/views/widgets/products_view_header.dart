@@ -4,13 +4,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 
 class ProductsViewHeader extends StatelessWidget {
-  const ProductsViewHeader({super.key});
-
+  const ProductsViewHeader({super.key, required this.count});
+  final int count;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('4 نتائح', style: TextStyles.bold16),
+        Text('$count نتائح', style: TextStyles.bold16),
         Spacer(),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),

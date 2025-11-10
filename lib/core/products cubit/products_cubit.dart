@@ -14,7 +14,10 @@ class ProductsCubit extends Cubit<ProductsState> {
     var result =  await productsRepo.getProducts();
     result.fold(
       (failure) => emit(ProductsFailure(errMessage: failure.message)),
-      (products) => emit(ProductsSuccess(products: products)),
+      (products) {
+        productsLength = products.length;
+        emit(ProductsSuccess(products: products));
+      },
     );
   }
 
@@ -22,10 +25,7 @@ class ProductsCubit extends Cubit<ProductsState> {
     var result =  await productsRepo.getBestSellingProducts();
     result.fold(
       (failure) => emit(ProductsFailure(errMessage: failure.message)),
-      (products) {
-        productsLength = products.length;
-        emit(ProductsSuccess(products: products));
-      },
+      (products) => emit(ProductsSuccess(products: products)),
     );
   }
 }
