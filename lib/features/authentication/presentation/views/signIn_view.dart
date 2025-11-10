@@ -27,7 +27,7 @@ class SignInView extends StatelessWidget {
               showErrorBar(context, state.message);
             }
             if(state is SignInSuccess) {
-              Navigator.pushNamed(context, MainView.routeName);
+              Navigator.pushReplacementNamed(context, MainView.routeName);
             }
           },
           builder: (context, state) {

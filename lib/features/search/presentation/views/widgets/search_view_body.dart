@@ -31,9 +31,9 @@ class _SearchViewBodyState extends State<SearchViewBody> {
     _getHistories();
   }
 
-  void saveSearchToHistory(String value) {
+  Future<void> saveSearchToHistory(String value) async{
     histories.insert(0, value);
-    AppPrefs.setStrings(kHistoryKey, histories);
+    await AppPrefs.setStrings(kHistoryKey, histories);
   }
 
   Future<void> _getHistories() async {
@@ -119,9 +119,10 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                           style: TextStyles.semiBold13,
                         ),
                         InkWell(
-                          onTap: (){
+                          onTap: () async{
                             histories.clear();
-                            AppPrefs.setStrings(kHistoryKey, []);
+                            await AppPrefs.setStrings(kHistoryKey, []);
+                            if (!mounted) return;
                             setState((){});
                           },
                           child: Text(
