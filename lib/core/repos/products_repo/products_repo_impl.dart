@@ -43,5 +43,21 @@ class ProductsRepoImpl extends ProductsRepo{
    }
   }
 
+  @override
+  Future<Either<Failure, List<ProductEntity>>> getSearchedProducts({required String query}) async{
+    try {
+      List<Map<String, dynamic>> data = await databaseService.getData(
+        path: BackEndEndPoints.getProducts,
+        searchQuery: query,
+        query: {
+          'orderBy': 'name'
+        });
+      List<ProductModel> products = data.map((e) => ProductModel.fromJson(e)).toList();
+      return right(products);
+    } catch (e) {
+      return left(ServerFailure('Failed to get products $e'));
+    }
+  }
+
 
 }

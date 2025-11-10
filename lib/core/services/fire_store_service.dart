@@ -14,7 +14,7 @@ class FireStoreService implements DatabaseService{
 
   // get date of a doc or a collection
   @override
-  Future<dynamic> getData({required String path, String? docId, Map<String,dynamic>? query}) async{
+  Future<dynamic> getData({required String path, String? docId, Map<String,dynamic>? query, String? searchQuery}) async{
     if (docId!=null) {
       DocumentSnapshot user = await firebaseFireStore.collection(path).doc(docId).get();
       return user.data() as Map<String,dynamic>;
@@ -24,7 +24,11 @@ class FireStoreService implements DatabaseService{
         if(query['orderBy'] != null){
           var orderByField = query['orderBy'];
           var descending = query['descending'];
-          data = data.orderBy(orderByField, descending: descending);
+          if(searchQuery != null){
+            data = data.orderBy(orderByField).where(orderByField, isEqualTo: searchQuery);
+          }else{
+            data = data.orderBy(orderByField, descending: descending);
+          }
         }
 
         if(query['limit'] != null){

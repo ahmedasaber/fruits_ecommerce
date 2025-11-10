@@ -28,4 +28,17 @@ class ProductsCubit extends Cubit<ProductsState> {
       (products) => emit(ProductsSuccess(products: products)),
     );
   }
+
+  Future<void> loadSearchedProducts({required String query}) async{
+    if (query.isNotEmpty) {
+      emit(ProductsLoading());
+      var result =  await productsRepo.getSearchedProducts(query: query);
+      result.fold(
+        (failure) => emit(ProductsFailure(errMessage: failure.message)),
+        (products) => emit(ProductsSuccess(products: products)),
+      );
+    }else{
+      emit(ProductsInitial());
+    }
+  }
 }
