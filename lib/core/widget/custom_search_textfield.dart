@@ -5,7 +5,11 @@ import '../utils/app_colors.dart';
 import '../utils/app_text_style.dart';
 
 class CustomSearchTextField extends StatelessWidget {
-  const CustomSearchTextField({super.key});
+  const CustomSearchTextField({super.key, this.controller, this.onSubmitted, this.onChanged});
+
+  final TextEditingController? controller;
+  final void Function(String)? onSubmitted;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +25,7 @@ class CustomSearchTextField extends StatelessWidget {
         ]
       ),
       child: TextField(
+        controller: controller,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           hintText: 'ابحث عن.......',
@@ -43,6 +48,8 @@ class CustomSearchTextField extends StatelessWidget {
           enabledBorder:  buildBorder(),
           focusedBorder:  buildBorder(),
         ),
+        onSubmitted: onSubmitted,
+        onChanged: onChanged,
       ),
     );
   }

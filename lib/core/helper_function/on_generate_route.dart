@@ -8,6 +8,7 @@ import 'package:fruits_ecommerce/features/checkout/presentation/view/payment_suc
 import 'package:fruits_ecommerce/features/home/domain/entites/cart_entity.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/main_view.dart';
 import 'package:fruits_ecommerce/features/onboarding/presentaion/views/onboarding_view.dart';
+import 'package:fruits_ecommerce/features/search/presentation/views/search_view.dart';
 import 'package:fruits_ecommerce/features/splash/presentation/views/splash_view.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings){
@@ -32,6 +33,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings){
       return MaterialPageRoute(builder: (context) => PaymentSuccessPage(orderId: settings.arguments as String));
     case NotificationView.routeName:
       return MaterialPageRoute(builder: (context) => NotificationView());
+   case SearchView.routeName:
+      return MaterialPageRoute(builder: (context) => SearchView(query: settings.arguments as String,));
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }

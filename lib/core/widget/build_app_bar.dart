@@ -8,7 +8,8 @@ AppBar buildCustomAppBar({ required BuildContext context, required String title,
       Visibility(
         visible: showNotificationBt,
           child: NotificationWidget()
-      )
+      ),
+      SizedBox(width: 16,),
     ],
       leading: Visibility(
         visible: showBackBt,

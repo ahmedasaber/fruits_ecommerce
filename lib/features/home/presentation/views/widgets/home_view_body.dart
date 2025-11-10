@@ -5,6 +5,7 @@ import 'package:fruits_ecommerce/core/widget/custom_search_textfield.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/best_selling_header.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/products_bloc_builder.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/featured_list.dart';
+import 'package:fruits_ecommerce/features/search/presentation/views/search_view.dart';
 
 import 'custom_home_app_bar.dart';
 
@@ -35,7 +36,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 children: [
                   CustomHomeAppBar(),
                   SizedBox(height: 16,),
-                  CustomSearchTextField(),
+                  CustomSearchTextField(onSubmitted: (value){
+                    Navigator.pushNamed(context, SearchView.routeName, arguments: value.trim());
+                  },),
                   SizedBox(height: 12,),
                   FeaturedList(),
                   SizedBox(height: 12,),
