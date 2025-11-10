@@ -29,9 +29,7 @@ class FruitItem extends StatelessWidget {
               Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top:10.0),
-                  child: product.imageUrl != null
-                    ? CustomNetworkImage(imageUrl: product.imageUrl!)
-                    : Image.asset('assets/images/fruit-image.png', fit: BoxFit.cover,)
+                  child: SizedBox(height: 100, child: CustomNetworkImage(imageUrl: product.imageUrl!))
                 )
               ),
               SizedBox(height: 16,),
@@ -42,10 +40,12 @@ class FruitItem extends StatelessWidget {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(product.name, style: TextStyles.semiBold13,),
                         SizedBox(height: 7,),
                         Text.rich(
+                          overflow: TextOverflow.ellipsis,
                           TextSpan(
                             children: [
                               TextSpan(
