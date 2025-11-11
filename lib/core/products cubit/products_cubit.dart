@@ -41,4 +41,14 @@ class ProductsCubit extends Cubit<ProductsState> {
       emit(ProductsInitial());
     }
   }
+  Future<void> loadFilteredProducts({required String? query}) async{
+    if (query != null && query.isNotEmpty) {
+      emit(ProductsLoading());
+      var result =  await productsRepo.getFilteredProducts(query: query);
+      result.fold(
+        (failure) => emit(ProductsFailure(errMessage: failure.message)),
+        (products) => emit(ProductsSuccess(products: products)),
+      );
+    }
+  }
 }

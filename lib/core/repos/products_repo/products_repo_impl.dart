@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
+import 'package:fruits_ecommerce/constants.dart';
 import 'package:fruits_ecommerce/core/entities/product_entity.dart';
 import 'package:fruits_ecommerce/core/errors/failures.dart';
 import 'package:fruits_ecommerce/core/models/product_model.dart';
@@ -59,5 +60,38 @@ class ProductsRepoImpl extends ProductsRepo{
     }
   }
 
+  @override
+  Future<Either<Failure, List<ProductEntity>>> getFilteredProducts({required String query}) async{
+    try {
+      final sortBy = filterQuery(query);
+      List<Map<String, dynamic>> data = await databaseService.getData(
+        path: BackEndEndPoints.getProducts,
+        query: sortBy
+      );
+      List<ProductModel> products = data.map((e) => ProductModel.fromJson(e)).toList();
+      return right(products);
+    } catch (e) {
+      return left(ServerFailure('Failed to get products $e'));
+    }
+  }
 
+  Map<String, dynamic> filterQuery(String query){
+    if (query == kSortName) {
+      return {
+        'orderBy': 'name',
+        'descending': false,
+      };
+    } else if (query == kSortLowPrice) {
+      return {
+        'orderBy': 'price',
+        'descending': false,
+      };
+    } else if (query == kSortHighPrice) {
+      return {
+        'orderBy': 'price',
+        'descending': true,
+      };
+    }
+    return {'orderBy': 'name',};
+  }
 }

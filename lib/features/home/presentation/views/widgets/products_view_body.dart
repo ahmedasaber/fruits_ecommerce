@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_ecommerce/core/helper_function/bottom_sheet.dart';
 import 'package:fruits_ecommerce/core/products%20cubit/products_cubit.dart';
 import 'package:fruits_ecommerce/core/widget/build_app_bar.dart';
 import 'package:fruits_ecommerce/core/widget/custom_search_textfield.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/products_bloc_builder.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/products_view_header.dart';
+import 'package:fruits_ecommerce/features/home/presentation/views/widgets/sort_sheet_body.dart';
 
 class ProductsViewBody extends StatefulWidget {
   const ProductsViewBody({super.key});
@@ -38,7 +40,14 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
                   SizedBox(height: 16),
                   CustomSearchTextField(),
                   SizedBox(height: 12),
-                  ProductsViewHeader(count: context.read<ProductsCubit>().productsLength,),
+                  ProductsViewHeader(
+                    count: context.read<ProductsCubit>().productsLength,
+                    onTapFilter: () async{
+                      final result = await showBottomSheetFilter(context, child: SortSheet());
+                      if (!context.mounted) return;
+                      context.read<ProductsCubit>().loadFilteredProducts(query: result);
+                    },
+                  ),
                   SizedBox(height: 8),
                 ],
               ),
