@@ -129,4 +129,15 @@ class AuthRepoImpl extends AuthRepo{
     var jsonData = jsonEncode(UserModel.fromEntity(user).toMap());
     await AppPrefs.setString(kUserData, jsonData);
   }
+
+  @override
+  Future deleteUserData({required String key}) async {
+     AppPrefs.deleteString(kUserData);
+  }
+
+  @override
+  Future<void> logOut() async {
+    firebaseAuthService.logOut();
+    await deleteUserData(key: kUserData);
+  }
 }

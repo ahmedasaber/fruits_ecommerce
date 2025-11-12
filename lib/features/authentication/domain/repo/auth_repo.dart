@@ -8,8 +8,10 @@ abstract class AuthRepo{
   Future<Either<Failure, UserEntity>> singInWithEmailAndPassword({required BuildContext context,required String email, required String password});
   Future<Either<Failure, UserEntity>> singInWithGoogle({required BuildContext context,});
   Future<Either<Failure, UserEntity>> singInWithFacebook({required BuildContext context,});
+  Future<void> logOut();
   Future addUserData({required UserEntity user});
   Future saveUserData({required UserEntity user});
+  Future deleteUserData({required String key});
   Future<UserEntity> getUserData({required String docId});
 
 }

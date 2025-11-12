@@ -21,6 +21,9 @@ class AppPrefs {
   static String getString(String key){
     return _instance.getString(key) ?? '';
   }
+  static void deleteString(String key){
+    _instance.remove(key);
+  }
 
   static Future<void> setStrings(String key, List<String> values) async{
     await _instance.setStringList(key, values);
