@@ -8,15 +8,15 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 class ProductsGridViewBlocBuilder extends StatelessWidget {
   const ProductsGridViewBlocBuilder({
-    super.key,
+    super.key, this.itemCount,
   });
-
+  final int? itemCount;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductsCubit, ProductsState>(
       builder: (context, state) {
         if (state is ProductsSuccess) {
-          return ProductsGridView(products: state.products,);
+          return ProductsGridView(products: state.products, itemCount: itemCount,);
         }else if(state is ProductsFailure){
           return SliverToBoxAdapter(child: CustomErrorWidget(errMessage: state.errMessage,));
         }else {

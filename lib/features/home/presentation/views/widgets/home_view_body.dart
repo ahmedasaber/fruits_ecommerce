@@ -47,7 +47,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 ],
               ),
             ),
-            ProductsGridViewBlocBuilder(),
+            ProductsGridViewBlocBuilder(itemCount: 4,),
           ],
         ),
       ),
