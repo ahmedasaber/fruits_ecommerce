@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce/core/widget/notification_view.dart';
+import 'package:fruits_ecommerce/features/about/presentation/views/about_view.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/signIn_view.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/signup_view.dart';
 import 'package:fruits_ecommerce/features/best_selling_fruits/presentaion/views/best_selling_fruits_view.dart';
@@ -35,6 +36,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings){
       return MaterialPageRoute(builder: (context) => NotificationView());
    case SearchView.routeName:
       return MaterialPageRoute(builder: (context) => SearchView(query: settings.arguments as String,));
+    case AboutView.routeName:
+      return MaterialPageRoute(builder: (context) => AboutView());
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }

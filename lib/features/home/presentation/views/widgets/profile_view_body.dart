@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce/core/helper_function/get_user_data.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/core/widget/log_out_button.dart';
+import 'package:fruits_ecommerce/features/about/presentation/views/about_view.dart';
 import 'package:fruits_ecommerce/features/authentication/domain/entities/user_entity.dart';
 import 'package:fruits_ecommerce/features/authentication/domain/repo/auth_repo.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/profile_header.dart';
@@ -41,7 +42,9 @@ class ProfileViewBody extends StatelessWidget {
                 const SizedBox(height: 16,),
                 Text('المساعده', style: TextStyles.semiBold13,),
                 const SizedBox(height: 16,),
-                Section(onTap: () {  }, assetPath: 'assets/images/info-circle.svg', title: 'من نحن',),
+                Section(onTap: () {
+                  Navigator.pushNamed(context, AboutView.routeName);
+                }, assetPath: 'assets/images/info-circle.svg', title: 'من نحن',),
                 Divider(color: Color(0xfff2f3f3),),
                 const SizedBox(height: 63,),
               ],
