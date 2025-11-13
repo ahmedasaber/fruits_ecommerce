@@ -47,6 +47,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               ),
               const SizedBox(height: 16),
               PasswordTextField(
+                hint: S.of(context).passwordHint,
                 onSaved: (value){
                   password = value!;
                 }
