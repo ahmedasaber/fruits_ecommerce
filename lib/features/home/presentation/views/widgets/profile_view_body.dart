@@ -7,6 +7,7 @@ import 'package:fruits_ecommerce/features/authentication/domain/entities/user_en
 import 'package:fruits_ecommerce/features/authentication/domain/repo/auth_repo.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/profile_header.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/profile_section.dart';
+import 'package:fruits_ecommerce/features/personal%20profile/presentation/views/personal_profile_view.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key, required this.authRepo});
@@ -27,7 +28,9 @@ class ProfileViewBody extends StatelessWidget {
                 const SizedBox(height: 24,),
                 Text('عام', style: TextStyles.semiBold13,),
                 const SizedBox(height: 16,),
-                Section(onTap: () {  }, assetPath: 'assets/images/profile-green.svg', title: 'الملف الشخصي',),
+                Section(onTap: () {
+                  Navigator.pushNamed(context, PersonalProfileView.routeName);
+                }, assetPath: 'assets/images/profile-green.svg', title: 'الملف الشخصي',),
                 Divider(color: Color(0xfff2f3f3),),
                 Section(onTap: () {  }, assetPath: 'assets/images/box.svg', title: 'طلباتي',),
                 Divider(color: Color(0xfff2f3f3),),

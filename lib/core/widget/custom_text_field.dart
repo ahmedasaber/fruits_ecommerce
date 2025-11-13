@@ -3,17 +3,27 @@ import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 
 class CustomTextFormField extends StatelessWidget{
-  const CustomTextFormField({super.key, required this.hintText, this.isObsecure = false, required this.textInputType, this.suffixIcon, this.onSaved});
+  const CustomTextFormField({
+    super.key,
+    required this.hintText,
+    this.isObsecure = false,
+    required this.textInputType,
+    this.suffixIcon,
+    this.onSaved,
+    this.readOnly = false,
+  });
 
   final String hintText;
   final TextInputType textInputType;
   final bool isObsecure;
   final Widget? suffixIcon;
+  final bool readOnly;
   final void Function(String?)? onSaved;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       onSaved: onSaved,
+      readOnly: readOnly,
       validator: (value){
         if(value == null || value.isEmpty){
           return 'هذا الحقل مطلوب';

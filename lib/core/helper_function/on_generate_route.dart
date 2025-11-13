@@ -12,6 +12,8 @@ import 'package:fruits_ecommerce/features/onboarding/presentaion/views/onboardin
 import 'package:fruits_ecommerce/features/search/presentation/views/search_view.dart';
 import 'package:fruits_ecommerce/features/splash/presentation/views/splash_view.dart';
 
+import '../../features/personal profile/presentation/views/personal_profile_view.dart';
+
 Route<dynamic> onGenerateRoute(RouteSettings settings){
   switch(settings.name){
     case SplashView.routeName: 
@@ -36,6 +38,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings){
       return MaterialPageRoute(builder: (context) => NotificationView());
    case SearchView.routeName:
       return MaterialPageRoute(builder: (context) => SearchView(query: settings.arguments as String,));
+    case PersonalProfileView.routeName:
+      return MaterialPageRoute(builder: (context) => PersonalProfileView());
     case AboutView.routeName:
       return MaterialPageRoute(builder: (context) => AboutView());
     default:
