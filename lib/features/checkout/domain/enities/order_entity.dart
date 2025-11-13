@@ -1,11 +1,15 @@
+import 'dart:core';
+
 import 'package:fruits_ecommerce/features/checkout/domain/enities/shipping_address_entity.dart';
 import 'package:fruits_ecommerce/features/home/domain/entites/cart_entity.dart';
+import 'package:intl/intl.dart';
 
 class OrderInputEntity{
   final String uID;
   final String orderId;
   final CartEntity cartEntity;
   bool? payWithCash;
+  final String date = DateFormat("d MMMM , yyyy", "ar").format(DateTime.now());
   ShippingAddressEntity shippingAddressEntity;
   OrderInputEntity({this.payWithCash, required this.orderId, required this.shippingAddressEntity, required this.cartEntity, required this.uID,});
 
