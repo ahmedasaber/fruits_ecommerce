@@ -17,6 +17,17 @@ class ShippingAddressModel {
     required this.addressDetails,
   });
 
+   factory ShippingAddressModel.fromJson(Map<String, dynamic> json) {
+     return ShippingAddressModel(
+       name: json['name'],
+       email: json['email'],
+       address: json['address'],
+       phone: json['phone'],
+       city: json['city'],
+       addressDetails: json['addressDetails'],
+     );
+   }
+
   factory ShippingAddressModel.fromEntity(
       ShippingAddressEntity shippingAddressEntity){
     return ShippingAddressModel(
@@ -28,6 +39,17 @@ class ShippingAddressModel {
       addressDetails: shippingAddressEntity.addressDetails
     );
   }
+
+   ShippingAddressEntity toEntity() {
+     return ShippingAddressEntity(
+       name: name,
+       email: email,
+       address: address,
+       phone: phone,
+       city: city,
+       addressDetails: addressDetails,
+     );
+   }
 
   toJson(){
     return {
