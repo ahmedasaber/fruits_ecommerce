@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_ecommerce/core/helper_function/error_snack_bar.dart';
+import 'package:fruits_ecommerce/core/services/get_it_service.dart';
 import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/features/home/presentation/cubit/cart/cart_cubit.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
@@ -20,8 +21,8 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CartCubit(),
+    return BlocProvider.value(
+      value: getIt<CartCubit>(),
       child: Scaffold(
         body: BlocListener<CartCubit, CartState>(
           listener: (context, state) {
@@ -30,6 +31,9 @@ class _MainViewState extends State<MainView> {
             }
             if(state is CartItemRemoved){
               showErrorBar(context, 'تم الازالة من السلة', backgroundColor: Colors.red, durationInSec: 1);
+            }
+            if(state is CartItemFailed){
+              showErrorBar(context, 'حدث خطاء', backgroundColor: Colors.red, durationInSec: 1);
             }
           },
          child:  MainViewBody(selectedIndex: selectedIndex),

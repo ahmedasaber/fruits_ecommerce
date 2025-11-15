@@ -22,7 +22,7 @@ class FruitDetailsViewBody extends StatefulWidget {
 }
 
 class _FruitDetailsViewBodyState extends State<FruitDetailsViewBody> {
-  int counter = 0;
+  int counter = 1;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -58,8 +58,10 @@ class _FruitDetailsViewBodyState extends State<FruitDetailsViewBody> {
                     SizedBox(width: 16),
                     CircularIconBt(
                       onPressed: () {
-                        counter--;
-                        setState(() {});
+                        if (counter > 1) {
+                          counter--;
+                          setState(() {});
+                        }
                       },
                       backgroundColor:  AppColors.lightGreyColor,
                       icon: const Icon(Icons.remove),
@@ -89,7 +91,7 @@ class _FruitDetailsViewBodyState extends State<FruitDetailsViewBody> {
                 StateCard(title: '${widget.productEntity.numOfCalories} كالوري', subTitle: '${widget.productEntity.unitAmount} جرام', iconPath: 'assets/images/calo.svg',),
                 SizedBox(height: 16,),
                 CustomButton(text: 'أضف الي السلة', onPressed: (){
-                  context.read<CartCubit>().addProduct(widget.productEntity);
+                  context.read<CartCubit>().addProduct(widget.productEntity, count: counter);
                 }),
                 SizedBox(height: 24,),
               ],
