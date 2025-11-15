@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_ecommerce/core/entities/product_entity.dart';
 import 'package:fruits_ecommerce/core/widget/notification_view.dart';
 import 'package:fruits_ecommerce/features/about/presentation/views/about_view.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/signIn_view.dart';
@@ -6,6 +7,7 @@ import 'package:fruits_ecommerce/features/authentication/presentation/views/sign
 import 'package:fruits_ecommerce/features/best_selling_fruits/presentaion/views/best_selling_fruits_view.dart';
 import 'package:fruits_ecommerce/features/checkout/presentation/view/checkout_view.dart';
 import 'package:fruits_ecommerce/features/checkout/presentation/view/payment_success.dart';
+import 'package:fruits_ecommerce/features/fruit_details/presentation/view/fruit_details_view.dart';
 import 'package:fruits_ecommerce/features/home/domain/entites/cart_entity.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/main_view.dart';
 import 'package:fruits_ecommerce/features/onboarding/presentaion/views/onboarding_view.dart';
@@ -45,6 +47,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings){
       return MaterialPageRoute(builder: (context) => MyOrdersView());
     case AboutView.routeName:
       return MaterialPageRoute(builder: (context) => AboutView());
+    case FruitDetailsView.routeName:
+      return MaterialPageRoute(builder: (context) => FruitDetailsView(productEntity: settings.arguments as ProductEntity));
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }

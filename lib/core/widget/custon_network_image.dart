@@ -15,7 +15,7 @@ class CustomNetworkImage extends StatelessWidget {
         width: double.infinity,
         child: Image.asset(
           'assets/images/fruit-image.png',
-          fit: BoxFit.cover,
+          fit: BoxFit.contain,
         ),
       ),
     );
