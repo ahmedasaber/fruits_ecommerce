@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/features/my%20orders/domain/entities/my_order_entity.dart';
 import 'package:fruits_ecommerce/features/my%20orders/presentaion/cubit/my_orders_cubit.dart';
 import 'package:fruits_ecommerce/features/my%20orders/presentaion/views/widgets/order%20_card.dart';
@@ -13,7 +14,10 @@ class MyOrdersViewBody extends StatelessWidget {
       builder: (context, state) {
         if (state is MyOrdersSuccess) {
           List<MyOrderEntity> myOrders = state.myOrders;
-          return ListView.builder(
+          if(myOrders.isEmpty){
+            return Center(child: Text('لم تقم بعمل اي طلب حتي الان!', style: TextStyles.semiBold16,),);
+          }else {
+            return ListView.builder(
             itemCount: myOrders.length,
             itemBuilder: (context, i) {
               return OrderCard(
@@ -24,6 +28,7 @@ class MyOrdersViewBody extends StatelessWidget {
               );
             },
           );
+          }
         } else if (state is MyOrdersLoading) {
           return Center(child: CircularProgressIndicator());
         } else if (state is MyOrdersFailure) {

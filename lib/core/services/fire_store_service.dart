@@ -36,6 +36,11 @@ class FireStoreService implements DatabaseService{
           data = data.limit(limit);
         }
       }
+
+      if(searchQuery != null){
+        data = data.where('uld', isEqualTo: searchQuery);
+      }
+
       var result = await data.get();
       return result.docs.map((e) => e.data()).toList();
     }
