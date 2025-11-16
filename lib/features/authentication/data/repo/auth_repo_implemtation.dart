@@ -140,4 +140,21 @@ class AuthRepoImpl extends AuthRepo{
     firebaseAuthService.logOut();
     await deleteUserData(key: kUserData);
   }
+
+  @override
+  Future<Either<Failure, void>> sendPasswordResetEmail({required String email}) async {
+    try {
+      bool isExist = await databaseService.emailExists(email: email);
+      if (isExist) {
+        await firebaseAuthService.sendPasswordResetEmail(email: email);
+      }else{
+        return left(ServerFailure('هذا الإيميل غير مسجل لدينا.'));
+      }
+      return right(null);
+    } on CustomExceptions catch (e) {
+        return left(ServerFailure(e.message));
+    } catch (e){
+      return left(ServerFailure('هناك خطأ ما، حاول مرة أخرى.'));
+    }
+  }
 }

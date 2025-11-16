@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fruits_ecommerce/core/services/database_service.dart';
+import 'package:fruits_ecommerce/core/utils/backend_endpoints.dart';
 
 class FireStoreService implements DatabaseService{
   FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
@@ -52,4 +53,13 @@ class FireStoreService implements DatabaseService{
     return data.exists;
   }
 
+  @override
+  Future<bool> emailExists({required String email}) async {
+    final query = await FirebaseFirestore.instance
+        .collection(BackEndEndPoints.getUserData)
+        .where('email', isEqualTo: email)
+        .limit(1)
+        .get();
+    return query.docs.isNotEmpty;
+  }
 }

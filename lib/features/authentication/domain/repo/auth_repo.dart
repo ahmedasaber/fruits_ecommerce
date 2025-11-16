@@ -13,5 +13,5 @@ abstract class AuthRepo{
   Future saveUserData({required UserEntity user});
   Future deleteUserData({required String key});
   Future<UserEntity> getUserData({required String docId});
-
+  Future<Either<Failure, void>> sendPasswordResetEmail({required String email});
 }

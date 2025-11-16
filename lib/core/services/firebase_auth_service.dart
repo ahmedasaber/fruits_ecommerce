@@ -129,4 +129,23 @@ class FirebaseAuthService{
   void logOut(){
     FirebaseAuth.instance.signOut();
   }
+
+  Future<void> sendPasswordResetEmail({required String email}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'invalid-email':
+          throw CustomExceptions(message: 'صيغة الإيميل غير صحيحة.');
+        case 'user-not-found':
+          throw CustomExceptions(message: 'هذا الإيميل غير مسجَّل لدينا.');
+        case 'too-many-requests':
+          throw CustomExceptions(message: 'تم إرسال محاولات كثيرة. حاول لاحقًا.');
+        default:
+          throw CustomExceptions(message: 'خطأ من الخادم: ${e.message ?? e.code}');
+      }
+    } catch (e) {
+      throw CustomExceptions(message: 'هناك خطأ ما، حاول مرة أخرى.');
+    }
+  }
 }

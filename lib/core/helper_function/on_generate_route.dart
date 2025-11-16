@@ -14,6 +14,7 @@ import 'package:fruits_ecommerce/features/onboarding/presentaion/views/onboardin
 import 'package:fruits_ecommerce/features/search/presentation/views/search_view.dart';
 import 'package:fruits_ecommerce/features/splash/presentation/views/splash_view.dart';
 
+import '../../features/authentication/presentation/views/forget_password_view.dart';
 import '../../features/my orders/presentaion/views/my_order_view.dart';
 import '../../features/personal profile/presentation/views/personal_profile_view.dart';
 
@@ -27,6 +28,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings){
       return MaterialPageRoute(builder: (context) => const SignInView());
     case SignUpView.routeName:
       return MaterialPageRoute(builder: (context) => const SignUpView());
+    case ForgetPasswordView.routeName:
+      return MaterialPageRoute(builder: (context) => const ForgetPasswordView());
     case MainView.routeName:
       return MaterialPageRoute(builder: (context) => const MainView());
     case BestSellingFruitsView.routeName:

@@ -10,6 +10,7 @@ import 'package:fruits_ecommerce/features/authentication/presentation/signin_cub
 import 'package:fruits_ecommerce/features/authentication/presentation/views/widgets/custom_social_button.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/widgets/custom_two_text.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/widgets/or_divider.dart';
+import 'package:fruits_ecommerce/features/authentication/presentation/views/forget_password_view.dart';
 import 'package:fruits_ecommerce/generated/l10n.dart';
 import '../signup_view.dart';
 
@@ -53,10 +54,15 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 }
               ),
               const SizedBox(height: 16),
-              Text(
-                S.of(context).forgotPassword,
-                style: TextStyles.semiBold13.copyWith(
-                  color: AppColors.lightPrimaryColor,
+              InkWell(
+                onTap: (){
+                  Navigator.pushNamed(context, ForgetPasswordView.routeName);
+                },
+                child: Text(
+                  S.of(context).forgotPassword,
+                  style: TextStyles.semiBold13.copyWith(
+                    color: AppColors.lightPrimaryColor,
+                  ),
                 ),
               ),
               const SizedBox(height: 33,),
