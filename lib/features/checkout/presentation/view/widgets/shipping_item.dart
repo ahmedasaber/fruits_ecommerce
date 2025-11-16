@@ -56,7 +56,7 @@ class ShippingItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Center(child: Text('$price جنيه', style: TextStyles.bold13.copyWith(color: Color(0xff3A8B33)),)),
+              Center(child: Text('${double.parse(price).toStringAsFixed(2)} جنيه', style: TextStyles.bold13.copyWith(color: Color(0xff3A8B33)),)),
             ],
           ),
         ),
