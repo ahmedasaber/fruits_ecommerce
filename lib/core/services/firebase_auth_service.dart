@@ -148,4 +148,51 @@ class FirebaseAuthService{
       throw CustomExceptions(message: 'هناك خطأ ما، حاول مرة أخرى.');
     }
   }
+
+  Future<bool> verifyPassword({required String enteredPassword}) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null || user.email == null) {
+        return false; // مش مسجل دخول
+      }
+      final credential = EmailAuthProvider.credential(email: user.email!, password: enteredPassword);
+      
+      await user.reauthenticateWithCredential(credential);
+      
+      return true;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'wrong-password') {
+        return false; // الباسورد غلط
+      }
+      rethrow; // أخطاء تانية (انقطاع نت، تسجيل خروج…)
+    }
+  }
+
+  Future<void> updatePassword({required String newPassword}) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser!;
+      await user.updatePassword(newPassword);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'requires-recent-login') {
+        throw CustomExceptions(message: "يجب تسجيل الدخول مرة أخرى قبل تغيير كلمة المرور.");
+      }
+      else if (e.code == 'weak-password') {
+        throw CustomExceptions(message: "كلمة المرور ضعيفة جدًا. يرجى اختيار كلمة أقوى.");
+      }
+      else if (e.code == 'network-request-failed') {
+        throw CustomExceptions(message: "لا يوجد اتصال بالإنترنت.");
+      }
+      else if (e.code == 'user-disabled') {
+        throw CustomExceptions(message: "هذا الحساب معطّل ولا يمكن تعديله.");
+      }
+      else if (e.code == 'invalid-credential') {
+        throw CustomExceptions(message: "جلسة الدخول غير صالحة، حاول تسجيل الدخول مرة أخرى.");
+      }
+      else {
+        throw CustomExceptions(message: e.message ?? "حدث خطأ غير متوقع.");
+      }
+    } catch (e) {
+      throw CustomExceptions(message:'حدث خطأ غير متوقع. حاول مرة أخرى. ');
+    }
+  }
 }

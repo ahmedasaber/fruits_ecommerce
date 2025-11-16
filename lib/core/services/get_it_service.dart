@@ -10,6 +10,8 @@ import 'package:fruits_ecommerce/features/authentication/domain/repo/auth_repo.d
 import 'package:fruits_ecommerce/features/home/presentation/cubit/cart/cart_cubit.dart';
 import 'package:fruits_ecommerce/features/my%20orders/data/repo/my_orders_repo_impl.dart';
 import 'package:fruits_ecommerce/features/my%20orders/domain/repo/my_orders_repo.dart';
+import 'package:fruits_ecommerce/features/personal%20profile/data/repo/update_info_repo_impl.dart';
+import 'package:fruits_ecommerce/features/personal%20profile/domain/repo/update_info_repo.dart';
 import 'package:get_it/get_it.dart';
 
 final getIt = GetIt.instance;
@@ -22,6 +24,12 @@ void setupGetIt() {
     AuthRepoImpl(
       firebaseAuthService: getIt<FirebaseAuthService>(),
       databaseService: getIt<DatabaseService>(),
+    ),
+  );
+
+  getIt.registerSingleton<UpdateInfoRepo>(
+    UpdateInfoRepoImpl(
+      firebaseAuthService: getIt<FirebaseAuthService>(),
     ),
   );
 

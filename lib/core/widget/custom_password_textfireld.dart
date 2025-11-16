@@ -3,10 +3,11 @@ import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/core/widget/custom_text_field.dart';
 
 class PasswordTextField extends StatefulWidget{
-  const PasswordTextField({super.key, required this.onSaved, required this.hint});
+  const PasswordTextField({super.key, this.onSaved, required this.hint, this.controller});
 
   final void Function(String?)? onSaved;
   final String hint;
+  final TextEditingController? controller;
 
   @override
   State<PasswordTextField> createState() => _PasswordTextFieldState();
@@ -17,6 +18,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
+      controller: widget.controller,
       onSaved: widget.onSaved,
       hintText: widget.hint,
       textInputType: TextInputType.visiblePassword,
