@@ -15,7 +15,7 @@ class AmountEntity {
 
   factory AmountEntity.fromEntity(OrderInputEntity entity) {
     return AmountEntity(
-      total: entity.calcTotalPriceAfterShippingAndDiscount().toString(),
+      total: entity.calcTotalPriceAfterShippingAndDiscount().toStringAsFixed(2).replaceAll(',', '.'),
       currency: getCurrency(),
       details: DetailsEntity.fromEntity(entity),
     );
