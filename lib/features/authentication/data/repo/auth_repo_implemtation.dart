@@ -13,6 +13,7 @@ import 'package:fruits_ecommerce/core/utils/backend_endpoints.dart';
 import 'package:fruits_ecommerce/features/authentication/data/models/user_model.dart';
 import 'package:fruits_ecommerce/features/authentication/domain/entities/user_entity.dart';
 import 'package:fruits_ecommerce/features/authentication/domain/repo/auth_repo.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 import 'package:logger/logger.dart';
 
 class AuthRepoImpl extends AuthRepo{
@@ -24,6 +25,7 @@ class AuthRepoImpl extends AuthRepo{
   var logger = Logger();
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword({required BuildContext context,required String name,required String email, required String password}) async{
+    var localization = S.of(context);
    User? user;
     try {
       user =  await firebaseAuthService.createAccountWithEmail(context: context,emailAddress: email, password: password);
@@ -36,12 +38,13 @@ class AuthRepoImpl extends AuthRepo{
    }catch (e){
       await deleteUser(user: user);
      logger.w('Exception in AuthRepoImpl.createUserWithEmailAndPassword: ${e.toString()}');
-     return left(ServerFailure('هناك خطأ ما، حاول مرة أخري.'));
+     return left(ServerFailure(localization.genericError));
    }
   }
 
   @override
   Future<Either<Failure, UserEntity>> singInWithEmailAndPassword({required BuildContext context,required String email, required String password}) async{
+    var localization = S.of(context);
     try {
       var user = await firebaseAuthService.signInUsingEmailPassword(context: context,emailAddress: email, password: password);
       var userEntity = await getUserData(docId: user.uid);
@@ -51,12 +54,13 @@ class AuthRepoImpl extends AuthRepo{
       return left(ServerFailure(e.message));
     }catch (e){
       logger.w('Exception in AuthRepoImpl.singInWithEmailAndPassword: ${e.toString()}');
-      return left(ServerFailure('هناك خطأ ما، حاول مرة أخري.'));
+      return left(ServerFailure(localization.genericError));
     }
   }
 
   @override
   Future<Either<Failure, UserEntity>> singInWithGoogle({required BuildContext context,}) async{
+    var localization = S.of(context);
     User? user;
     try {
       user = await firebaseAuthService.signInWithGoogle(context: context,);
@@ -75,12 +79,13 @@ class AuthRepoImpl extends AuthRepo{
     }catch (e){
       await deleteUser(user: user);
       logger.w('Exception in AuthRepoImpl.singInWithGoogle: ${e.toString()}');
-      return left(ServerFailure('هناك خطأ ما، حاول مرة أخري.'));
+      return left(ServerFailure(localization.genericError));
     }
   }
 
   @override
   Future<Either<Failure, UserEntity>> singInWithFacebook({required BuildContext context,}) async{
+    var localization = S.of(context);
     User? user;
     try {
       user = await firebaseAuthService.signInWithFacebook(context: context,);
@@ -99,7 +104,7 @@ class AuthRepoImpl extends AuthRepo{
     }catch (e){
       await deleteUser(user: user);
       logger.w('Exception in AuthRepoImpl.singInWithFacebook: ${e.toString()} code: ${e.runtimeType}');
-      return left(ServerFailure('هناك خطأ ما، حاول مرة أخري.'));
+      return left(ServerFailure(localization.genericError));
     }
   }
 
@@ -142,19 +147,20 @@ class AuthRepoImpl extends AuthRepo{
   }
 
   @override
-  Future<Either<Failure, void>> sendPasswordResetEmail({required String email}) async {
+  Future<Either<Failure, void>> sendPasswordResetEmail({required BuildContext context,required String email}) async {
+    var localization = S.of(context);
     try {
       bool isExist = await databaseService.emailExists(email: email);
       if (isExist) {
-        await firebaseAuthService.sendPasswordResetEmail(email: email);
+        if(context.mounted) await firebaseAuthService.sendPasswordResetEmail(context: context, email: email);
       }else{
-        return left(ServerFailure('هذا الإيميل غير مسجل لدينا.'));
+        return left(ServerFailure(localization.notRegisteredEmail));
       }
       return right(null);
     } on CustomExceptions catch (e) {
         return left(ServerFailure(e.message));
     } catch (e){
-      return left(ServerFailure('هناك خطأ ما، حاول مرة أخرى.'));
+      return left(ServerFailure(localization.genericError));
     }
   }
 }

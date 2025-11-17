@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce/features/personal%20profile/domain/repo/update_info_repo.dart';
 import 'package:meta/meta.dart';
 
@@ -9,9 +10,9 @@ class UpdateUserInfoCubit extends Cubit<UpdateUserInfoState> {
 
   final UpdateInfoRepo updateInfoRepo;
 
-  void updateUserPassword({required String oldPassword, required String newPassword}) async{
+  void updateUserPassword({required BuildContext context ,required String oldPassword, required String newPassword}) async{
     emit(UpdateUserInfoLoading());
-    var result = await updateInfoRepo.updateUserPassword(oldPassword: oldPassword, newPassword: newPassword);
+    var result = await updateInfoRepo.updateUserPassword(context: context, oldPassword: oldPassword, newPassword: newPassword);
     result.fold(
       (failure) => emit(UpdateUserInfoFailure(errMessage: failure.message)),
       (_) => emit(UpdateUserInfoSuccess()),

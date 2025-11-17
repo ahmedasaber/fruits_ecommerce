@@ -6,6 +6,7 @@ import 'package:fruits_ecommerce/features/home/presentation/cubit/cart/cart_cubi
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/cart_header.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/cart_items_list.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/custom_cart_bt.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});
@@ -21,7 +22,7 @@ class CartViewBody extends StatelessWidget {
               children: [
                 buildCustomAppBar(
                   context: context,
-                  title: 'السلة',
+                  title: S.of(context).cart,
                   showNotificationBt: false,
                   showBackBt: false,
                 ),

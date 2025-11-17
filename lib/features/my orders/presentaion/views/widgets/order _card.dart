@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class OrderCard extends StatelessWidget {
   const OrderCard({super.key, required this.orderId, required this.count, required this.totalPrice, required this.date});
@@ -12,6 +13,7 @@ class OrderCard extends StatelessWidget {
   final String totalPrice;
   @override
   Widget build(BuildContext context) {
+    var localization = S.of(context);
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -46,13 +48,13 @@ class OrderCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Title + order number
-                Text('طلب رقم: $orderId#', style: TextStyles.bold13),
+                Text(localization.orderNumberHash(orderId), style: TextStyles.bold13),
 
                 const SizedBox(height: 6),
 
                 // Date
                 Text(
-                  'تم الطلب: $date',
+                  localization.orderDate(date),
                   style: TextStyles.regular11.copyWith(color: AppColors.hintTextColor),
                 ),
 
@@ -62,13 +64,13 @@ class OrderCard extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'عدد الطلبات :',
+                      localization.ordersCount,
                       style: TextStyles.regular13.copyWith(color: AppColors.hintTextColor),
                     ),
                     SizedBox(width: 6),
                     Text(count, style: TextStyles.bold13),
                     SizedBox(width: 18),
-                    Text('$totalPrice جنية', style: TextStyles.bold13),
+                    Text(localization.priceInEGP(totalPrice), style: TextStyles.bold13),
                     SizedBox(width: 18),
 
                   ],

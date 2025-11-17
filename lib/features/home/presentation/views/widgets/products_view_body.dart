@@ -7,6 +7,7 @@ import 'package:fruits_ecommerce/core/widget/custom_search_textfield.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/products_bloc_builder.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/products_view_header.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/sort_sheet_body.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class ProductsViewBody extends StatefulWidget {
   const ProductsViewBody({super.key});
@@ -34,7 +35,7 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
                 children: [
                   buildCustomAppBar(
                     context: context,
-                    title: 'المنتجات',
+                    title: S.of(context).products,
                     showBackBt: false,
                   ),
                   SizedBox(height: 16),

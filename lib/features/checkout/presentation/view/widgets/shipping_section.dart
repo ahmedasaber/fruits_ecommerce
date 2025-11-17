@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_ecommerce/features/checkout/domain/enities/order_entity.dart';
 import 'package:fruits_ecommerce/features/checkout/presentation/view/widgets/shipping_item.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class ShippingSection extends StatefulWidget {
   const ShippingSection({super.key});
@@ -18,12 +19,13 @@ class _ShippingSectionState extends State<ShippingSection> with AutomaticKeepAli
     int shippingValue = 40;
     var orderEntity = context.read<OrderInputEntity>();
     var totalPrice = orderEntity.cartEntity.calculateTotalPrice();
+    var localization = S.of(context);
     return Column(
       children: [
         SizedBox(height: 33),
         ShippingItem(
-          title: 'الدفع عند الاستلام',
-          subTitle: 'التسليم من المكان',
+          title: localization.cashOnDelivery,
+          subTitle: localization.deliveryFromLocation,
           price: (totalPrice + shippingValue).toString(),
           onTap: () {
             selected = 0;
@@ -34,8 +36,8 @@ class _ShippingSectionState extends State<ShippingSection> with AutomaticKeepAli
         ),
         SizedBox(height: 16),
         ShippingItem(
-          title: 'الدفع اونلاين',
-          subTitle: 'يرجي تحديد طريقه الدفع',
+          title: localization.onlinePayment,
+          subTitle: localization.pleaseSelectPaymentMethod,
           price:(totalPrice).toString(),
           onTap: () {
             selected = 1;

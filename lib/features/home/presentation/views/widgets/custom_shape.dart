@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/custom_feature_button.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class CustomShape extends StatelessWidget {
   const CustomShape({super.key, required this.onPressedBt});
@@ -9,6 +10,7 @@ class CustomShape extends StatelessWidget {
   final VoidCallback onPressedBt;
   @override
   Widget build(BuildContext context) {
+    var localization = S.of(context);
     return ClipPath(
       clipper: RightCurveClipper(),
       child: Container(
@@ -26,11 +28,11 @@ class CustomShape extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text(
-              'عروض العيد',
+              localization.holidayOffers,
               style: TextStyles.regular13.copyWith(color: Colors.white),
             ),
             Text(
-              'خصم 25%',
+              localization.discount25,
               style: TextStyles.bold19.copyWith(color: Colors.white),
             ),
             CustomFeatureButton(onPressed: onPressedBt,),

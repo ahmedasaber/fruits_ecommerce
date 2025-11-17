@@ -5,6 +5,7 @@ import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/features/authentication/domain/repo/auth_repo.dart';
 import 'package:fruits_ecommerce/features/authentication/presentation/views/signIn_view.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class LogOutButton extends StatelessWidget {
   const LogOutButton({super.key, required this.authRepo});
@@ -37,7 +38,7 @@ class LogOutButton extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 80.0, right: 80),
               child: Text(
-                'تسجيل الخروج',
+                S.of(context).logout,
                 style: TextStyles.semiBold13.copyWith(
                   color: AppColors.primaryColor,
                 ),

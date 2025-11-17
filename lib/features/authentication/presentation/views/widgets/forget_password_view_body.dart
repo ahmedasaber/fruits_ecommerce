@@ -32,13 +32,14 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
   }
   @override
   Widget build(BuildContext context) {
+    var localization = S.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         children: [
           SizedBox(height: 24),
           Text(
-            'لا تقلق ، ما عليك سوى كتابة بريدك الألكتروني وسنرسل لك رابط لاعاده تعين كلمة المرور.',
+            localization.forgotPasswordInstructions,
             style: TextStyles.semiBold16.copyWith(
               color: AppColors.greyColor2,
             ),
@@ -49,7 +50,7 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
             autovalidateMode: autovalidateMode,
             child: CustomTextFormField(
               controller: controller,
-              hintText: S.of(context).emailHint,
+              hintText: localization.emailHint,
               textInputType: TextInputType.emailAddress,
             ),
           ),
@@ -59,17 +60,17 @@ class _ForgetPasswordViewBodyState extends State<ForgetPasswordViewBody> {
             if(state is ForgetPasswordFailure){
               showErrorBar(context, state.errMessage, backgroundColor: Colors.red);
             }else if(state is ForgetPasswordSuccess){
-              showErrorBar(context, 'تم ارسال رابط الي بريدك الالكتروني لاعاده تعين كلمة المرور.', backgroundColor: Colors.green);
+              showErrorBar(context, localization.resetLinkSent, backgroundColor: Colors.green);
             }
           },
           builder: (context, state) {
             if(state is ForgetPasswordLoading){
               return Center(child: CircularProgressIndicator(),);
             }else {
-              return CustomButton(text: 'نسيت كلمة المرور', onPressed: (){
+              return CustomButton(text: localization.forgotPassword, onPressed: (){
                 if(_key.currentState!.validate()){
                   _key.currentState!.save();
-                  context.read<ForgetPasswordCubit>().resetPassword(controller.text.trim());
+                  context.read<ForgetPasswordCubit>().resetPassword(context, controller.text.trim());
                 }else{
                   autovalidateMode = AutovalidateMode.always;
                   setState(() {});

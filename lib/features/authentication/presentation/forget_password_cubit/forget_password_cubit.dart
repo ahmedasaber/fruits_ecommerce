@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:fruits_ecommerce/features/authentication/domain/repo/auth_repo.dart';
 import 'package:meta/meta.dart';
 
@@ -9,9 +10,9 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   final AuthRepo authRepo;
 
-  void resetPassword(String email) async {
+  void resetPassword(BuildContext context ,String email) async {
     emit(ForgetPasswordLoading());
-    var result = await authRepo.sendPasswordResetEmail(email: email);
+    var result = await authRepo.sendPasswordResetEmail(email: email, context: context);
     result.fold(
       (failure) => emit(ForgetPasswordFailure(errMessage: failure.message)),
       (_) => emit(ForgetPasswordSuccess()),

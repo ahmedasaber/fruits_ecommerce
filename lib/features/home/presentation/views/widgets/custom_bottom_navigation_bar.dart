@@ -36,7 +36,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: BottomNavigationBarEntity.bottomNavigationBarItems.asMap().entries.map((e) {
+          children: BottomNavigationBarEntity.bottomNavigationBarItems(context).asMap().entries.map((e) {
             var index = e.key;
             var entity = e.value;
             if (index == selectedIndex) {

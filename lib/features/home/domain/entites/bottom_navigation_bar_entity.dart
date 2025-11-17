@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
+
 class BottomNavigationBarEntity {
   final String inActiveIcon, activeIcon;
   final String name;
@@ -7,27 +10,26 @@ class BottomNavigationBarEntity {
     required this.activeIcon,
     required this.name,
   });
-
-  static List<BottomNavigationBarEntity> get bottomNavigationBarItems => [
+  static List<BottomNavigationBarEntity> bottomNavigationBarItems(BuildContext context) => [
     BottomNavigationBarEntity(
       inActiveIcon: 'assets/images/home.svg',
       activeIcon: 'assets/images/home-active.svg',
-      name: 'الرئيسية',
+      name: S.of(context).main,
     ),
     BottomNavigationBarEntity(
       inActiveIcon: 'assets/images/products.svg',
       activeIcon: 'assets/images/products-active.svg',
-      name: 'المنتجات',
+      name: S.of(context).products,
     ),
     BottomNavigationBarEntity(
       inActiveIcon: 'assets/images/shopping-cart.svg',
       activeIcon: 'assets/images/shopping-cart-active.svg',
-      name: 'سلة التسوق',
+      name: S.of(context).shoppingCart,
     ),
     BottomNavigationBarEntity(
       inActiveIcon: 'assets/images/user.svg',
       activeIcon: 'assets/images/user-active.svg',
-      name: 'حسابي',
+      name: S.of(context).myAccount,
     ),
 
   ];

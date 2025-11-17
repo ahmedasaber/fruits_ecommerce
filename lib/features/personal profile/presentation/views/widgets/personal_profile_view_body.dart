@@ -8,6 +8,7 @@ import 'package:fruits_ecommerce/core/widget/custom_password_textfireld.dart';
 import 'package:fruits_ecommerce/core/widget/custom_text_field.dart';
 import 'package:fruits_ecommerce/features/authentication/domain/entities/user_entity.dart';
 import 'package:fruits_ecommerce/features/personal%20profile/presentation/cubit/update_user_info_cubit.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class PersonalProfileViewBody extends StatefulWidget {
   const PersonalProfileViewBody({super.key});
@@ -43,6 +44,7 @@ class _PersonalProfileViewBodyState extends State<PersonalProfileViewBody> {
   @override
   Widget build(BuildContext context) {
     UserEntity userEntity = getUser();
+    var localization = S.of(context);
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -53,25 +55,25 @@ class _PersonalProfileViewBodyState extends State<PersonalProfileViewBody> {
             SizedBox(height: 8,),
             CustomTextFormField(hintText: userEntity.email, textInputType: TextInputType.emailAddress,onSaved: (value){}),
             SizedBox(height: 16,),
-            Text('تغيير كلمة المرور', style: TextStyles.semiBold13,),
+            Text(localization.changePassword, style: TextStyles.semiBold13,),
             SizedBox(height: 16,),
             Form(
               key: _key,
               autovalidateMode: autovalidateMode,
               child: Column(
                 children: [
-                  PasswordTextField(controller: currentPasswordController, hint: 'كلمة المرور الحالي', ),
+                  PasswordTextField(controller: currentPasswordController, hint: localization.currentPassword, ),
                   SizedBox(height: 8,),
-                  PasswordTextField(controller: newPasswordController, hint: 'كلمة المرور الجديده', ),
+                  PasswordTextField(controller: newPasswordController, hint: localization.newPassword, ),
                   SizedBox(height: 8,),
-                  PasswordTextField(controller: confirmPasswordController, hint: 'تأكيد كلمة المرور الجديده', ),
+                  PasswordTextField(controller: confirmPasswordController, hint: localization.confirmNewPassword, ),
                   SizedBox(height: 74,),
                   BlocConsumer<UpdateUserInfoCubit, UpdateUserInfoState>(
                     listener: (context, state) {
                       if(state is UpdateUserInfoFailure){
                         showErrorBar(context, state.errMessage, backgroundColor: Colors.red);
                       }else if(state is UpdateUserInfoSuccess){
-                        showErrorBar(context, 'تم تغير كلمة المرور بنجاح.', backgroundColor: Colors.green);
+                        showErrorBar(context, localization.passwordChangedSuccessfully, backgroundColor: Colors.green);
                         currentPasswordController.clear();
                         newPasswordController.clear();
                         confirmPasswordController.clear();
@@ -81,14 +83,14 @@ class _PersonalProfileViewBodyState extends State<PersonalProfileViewBody> {
                       if(state is UpdateUserInfoLoading) {
                         return Center(child: CircularProgressIndicator(),);
                       } else {
-                        return CustomButton(text: 'حفظ التغييرات', onPressed: () {
+                        return CustomButton(text: localization.saveChanges, onPressed: () {
                         if (_key.currentState!.validate()) {
                           _key.currentState!.save();
                           if (newPasswordController.text.trim() ==
                               confirmPasswordController.text.trim()) {
-                              context.read<UpdateUserInfoCubit>().updateUserPassword(oldPassword: currentPasswordController.text.trim(), newPassword: newPasswordController.text.trim());
+                              context.read<UpdateUserInfoCubit>().updateUserPassword(context: context, oldPassword: currentPasswordController.text.trim(), newPassword: newPasswordController.text.trim());
                           } else {
-                            showErrorBar(context, 'تأكيد كلمة المرور الجديده غير صحيح ', backgroundColor: Colors.red);
+                            showErrorBar(context, localization.confirmPasswordIncorrect, backgroundColor: Colors.red);
                           }
                         } else {
                           autovalidateMode = AutovalidateMode.always;

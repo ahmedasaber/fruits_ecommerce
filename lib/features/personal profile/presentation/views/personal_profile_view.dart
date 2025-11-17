@@ -5,6 +5,7 @@ import 'package:fruits_ecommerce/core/widget/build_app_bar.dart';
 import 'package:fruits_ecommerce/features/personal%20profile/domain/repo/update_info_repo.dart';
 import 'package:fruits_ecommerce/features/personal%20profile/presentation/cubit/update_user_info_cubit.dart';
 import 'package:fruits_ecommerce/features/personal%20profile/presentation/views/widgets/personal_profile_view_body.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class PersonalProfileView extends StatelessWidget {
   const PersonalProfileView({super.key});
@@ -15,7 +16,7 @@ class PersonalProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildCustomAppBar(
-          context: context, title: 'الملف الشخصي', showNotificationBt: false),
+          context: context, title: S.of(context).personalProfile, showNotificationBt: false),
       body: BlocProvider(
         create: (context) => UpdateUserInfoCubit(updateInfoRepo: getIt<UpdateInfoRepo>()),
         child: PersonalProfileViewBody(),

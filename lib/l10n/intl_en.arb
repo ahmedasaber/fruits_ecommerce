@@ -33,5 +33,196 @@
   "signInWithGoogle": "Sign in with Google",
   "signInWithApple": "Sign in with Apple",
   "signInWithFacebook": "Sign in with Facebook",
-  "appleSignInNotDeveloped": "Apple Sign-In is not developed yet for iOS users."
+  "appleSignInNotDeveloped": "Apple Sign-In is not developed yet for iOS users.",
+  "fieldRequired": "This Field is required",
+  "notRegisteredEmail": "This email address is not registered with us.",
+  "addedToCart": "Added to cart",
+  "removedFromCart": "Removed from cart",
+  "errorOccurred": "An error occurred",
+  "goodMorning": "Good morning!..",
+  "searchFor": "Search for.......",
+  "bestSelling": "Best Selling",
+  "more": "More",
+  "perKilo": "/ kilo",
+  "products": "Products",
+  "resultsCount": "{count} results",
+  "@resultsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "logoutConfirmation": "Do you want to log out?",
+  "confirm": "Confirm",
+  "doNotWant": "Cancel",
+  "logout": "Logout",
+
+  "invalidEmailFormat": "Invalid email format.",
+  "emailNotRegistered": "This email is not registered.",
+  "emailNotRegisteredHere": "This email is not registered with us.",
+  "tooManyRequests": "Too many attempts. Please try again later.",
+  "serverError": "Server error",
+  "somethingWentWrong": "Something went wrong, please try again.",
+  "somethingWentWrongRetry": "Something went wrong, please try again.",
+  "noInternet": "No internet connection.",
+  "unexpectedError": "An unexpected error occurred.",
+  "unexpectedErrorRetry": "An unexpected error occurred. Try again",
+
+  "recentLoginRequired": "You must log in again before changing your password.",
+  "weakPasswordUpdate": "Password is too weak. Please choose a stronger password.",
+  "accountDisabled": "This account is disabled and cannot be modified.",
+  "invalidSession": "Invalid login session, please log in again.",
+  "currentPasswordIncorrect": "Current password is incorrect.",
+  "confirmPasswordIncorrect": "New password confirmation is incorrect",
+  "passwordChangedSuccessfully": "Password changed successfully.",
+  "changePassword": "Change Password",
+  "currentPassword": "Current Password",
+  "newPassword": "New Password",
+  "confirmNewPassword": "Confirm New Password",
+  "forgotPasswordInstructions": "Don't worry, just enter your email and we'll send you a link to reset your password.",
+  "resetLinkSent": "A reset link has been sent to your email to reset your password.",
+  "errorCheckCurrentPassword": "Something went wrong, please try again. Make sure of your current password.",
+
+  "notifications": "Notifications",
+  "nothingToShow": "Nothing to show here!",
+  "willNotifyYou": "We'll notify you as soon as new notifications arrive.",
+
+  "aboutUs": "About Us",
+  "aboutText1": "🍎 FruitHub is an online store specialized in selling the finest fresh and seasonal fruits, created to make buying fruits easier and more convenient than ever.",
+  "aboutText2": "At FruitHub, we believe that health starts with food, so we strive to provide high-quality natural products, carefully selected from the best local and international farms to ensure fresh flavor and complete nutritional value.",
+  "aboutText3": "We always strive to provide a comfortable and safe shopping experience for all our customers, through a simple and fast user interface, with the ability to browse products easily, add favorites, and follow offers and discounts continuously.",
+  "aboutText4": "We also provide a fast and safe delivery service to your doorstep, ensuring that the fruits reach you fresh as if you had chosen them yourself.",
+  "aboutText5": "Our goal is to be the first destination for fresh fruit lovers everywhere, through product quality, ease of use, and the trust we build with every purchase.",
+  "aboutText6": "🌿 FruitHub — Your health starts with choosing the best.",
+  "developer": "By El Za3eemooooooooo",
+
+  "payment": "Payment",
+  "successfullyCompleted": "Successful!",
+  "orderNumber": "Order Number",
+  "home": "Home",
+
+  "fullName": "Full Name",
+  "email": "Email",
+  "address": "Address",
+  "phoneNumber": "Phone Number",
+  "city": "City",
+  "floorAndApartment": "Floor Number, Apartment Number..",
+  "saveAddress": "Save Address",
+
+  "shipping": "Shipping",
+  "deliveryAddress": "Delivery Address:",
+  "edit": "Edit",
+  "orderSummary": "Order Summary:",
+  "subtotal": "Subtotal:",
+  "delivery": "Delivery:",
+  "deliveryPrice": "40 EGP",
+  "total": "Total",
+  "next": "Next",
+  "confirmOrder": "Confirm Order",
+  "payViaPaypal": "Pay via PayPal",
+  "pleaseSelectPayment": "Please select payment method",
+  "pleaseSelectPaymentMethod": "Please select payment method",
+
+  "cashOnDelivery": "Cash on Delivery",
+  "deliveryFromLocation": "Delivery from Location",
+  "onlinePayment": "Online Payment",
+  "operationSuccessful": "Operation completed successfully",
+
+  "expirationMonths": "Month",
+  "validity": "Validity",
+  "organic": "Organic",
+  "calories": "Calories",
+  "grams": "Grams",
+  "addToCart": "Add to Cart",
+  "review": "Review",
+
+  "main": "Home",
+  "shoppingCart": "Shopping Cart",
+  "myAccount": "My Account",
+
+  "youHaveProductsInCart": "You have {count} products in your shopping cart",
+  "@youHaveProductsInCart": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "checkoutPrice": "Pay {price} EGP",
+  "@checkoutPrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+
+  "totalAmountKg": "{amount} Kg",
+  "@totalAmountKg": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+
+  "priceInEGP": "{price} EGP",
+  "@priceInEGP": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+
+  "cart": "Cart",
+  "noProductsInCart": "No products in cart",
+  "shopNow": "Shop Now",
+  "holidayOffers": "Holiday Offers",
+  "discount25": "25% Discount",
+
+  "general": "General",
+  "personalProfile": "Personal Profile",
+  "myOrders": "My Orders",
+  "payments": "Payments",
+  "favorites": "Favorites",
+  "language": "Language",
+  "help": "Help",
+
+  "sortBy": "Sort By:",
+  "priceLowToHigh": "Price (Low to High)",
+  "priceHighToLow": "Price (High to Low)",
+  "alphabetical": "Alphabetical",
+  "filter": "Filter",
+
+  "noOrdersYet": "You haven't placed any orders yet!",
+  "orderNumberHash": "Order No: {orderId}#",
+  "@orderNumberHash": {
+    "placeholders": {
+      "orderId": {
+        "type": "String"
+      }
+    }
+  },
+
+  "orderDate": "Ordered: {date}",
+  "@orderDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+
+  "ordersCount": "Number of Orders:",
+  "saveChanges": "Save Changes",
+
+  "search": "Search",
+  "recentSearches": "Recent Searches",
+  "deleteAll": "Delete All",
+  "infoNotAvailable": "Oops... This information is not available at the moment",
+  "searchResults": "Search Results",
+  "chooseLanguage": "Select Language:"
 }

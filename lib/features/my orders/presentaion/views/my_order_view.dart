@@ -6,6 +6,7 @@ import 'package:fruits_ecommerce/core/widget/build_app_bar.dart';
 import 'package:fruits_ecommerce/features/my%20orders/data/repo/my_orders_repo_impl.dart';
 import 'package:fruits_ecommerce/features/my%20orders/presentaion/cubit/my_orders_cubit.dart';
 import 'package:fruits_ecommerce/features/my%20orders/presentaion/views/widgets/my_orders_view_body.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class MyOrdersView extends StatelessWidget {
   const MyOrdersView({super.key});
@@ -16,7 +17,7 @@ class MyOrdersView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildCustomAppBar(
-          context: context, title: 'طلباتي', showNotificationBt: false),
+          context: context, title: S.of(context).myOrders, showNotificationBt: false),
       body: BlocProvider(
         create: (context) => MyOrdersCubit(getIt<MyOrdersRepo>())..loadMyOrders(userID: getUser().uId),
         child: MyOrdersViewBody(),

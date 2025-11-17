@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/core/widget/build_app_bar.dart';
 import 'package:fruits_ecommerce/core/widget/custom_button.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 import '../../../../core/utils/app_text_style.dart';
 
 class PaymentSuccessPage extends StatelessWidget {
@@ -13,13 +14,14 @@ class PaymentSuccessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var localization = S.of(context);
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: buildCustomAppBar(
           context: context,
-          title: 'الدفع',
+          title: localization.payment,
           showBackBt: false,
           showNotificationBt: false,
         ),
@@ -31,12 +33,12 @@ class PaymentSuccessPage extends StatelessWidget {
                 const SizedBox(height: 67),
                 SvgPicture.asset('assets/images/success.svg'),
                 const SizedBox(height: 33),
-                Text('تم بنجاح !', style: TextStyles.bold16),
+                Text(localization.successfullyCompleted, style: TextStyles.bold16),
                 const SizedBox(height: 9),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 60.0),
                   child: Text(
-                    'رقم الطلب:  \n$orderId',
+                    localization.orderNumberHash(orderId),
                     style: TextStyles.regular13.copyWith(
                       color: AppColors.greyColor2,
                     ),
@@ -47,7 +49,7 @@ class PaymentSuccessPage extends StatelessWidget {
                   width: double.infinity,
                   height: 56,
                   child: CustomButton(
-                    text: 'الرئيسية',
+                    text: localization.home,
                     onPressed: () {
                       Navigator.pop(context);
                     },

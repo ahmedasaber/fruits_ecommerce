@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/app_text_style.dart';
@@ -28,7 +29,7 @@ class CustomSearchTextField extends StatelessWidget {
         controller: controller,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
-          hintText: 'ابحث عن.......',
+          hintText: S.of(context).searchFor,
           hintStyle: TextStyles.regular13.copyWith(color: AppColors.hintTextColor),
           prefixIcon: Row(
             mainAxisSize: MainAxisSize.min,

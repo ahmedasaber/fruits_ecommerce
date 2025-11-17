@@ -10,6 +10,7 @@ import 'package:fruits_ecommerce/features/checkout/presentation/add_order_cubit/
 import 'package:fruits_ecommerce/features/checkout/presentation/view/widgets/add_order_cubit_bloc_builder.dart';
 import 'package:fruits_ecommerce/features/checkout/presentation/view/widgets/checkout_view_body.dart';
 import 'package:fruits_ecommerce/features/home/domain/entites/cart_entity.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -35,7 +36,7 @@ class _CheckoutViewState extends State<CheckoutView> {
     return BlocProvider(
       create: (context) => AddOrderCubit(getIt<OrdersRepo>()),
       child: Scaffold(
-      appBar: buildCustomAppBar(context: context, title: 'الشحن', showNotificationBt: false),
+      appBar: buildCustomAppBar(context: context, title: S.of(context).shipping, showNotificationBt: false),
       body: Provider.value(
         value: orderEntity,
         child: AddOrderCubitBlocBuilder(child: const CheckoutViewBody()),

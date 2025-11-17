@@ -6,6 +6,7 @@ import 'package:fruits_ecommerce/core/utils/app_decorations.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/features/checkout/domain/enities/order_entity.dart';
 import 'package:fruits_ecommerce/features/checkout/presentation/view/widgets/payment_item.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class DeliveryAddress extends StatelessWidget {
   const DeliveryAddress({super.key, required this.pageController});
@@ -14,8 +15,9 @@ class DeliveryAddress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var shippingAddress = context.read<OrderInputEntity>().shippingAddressEntity;
+    var localization = S.of(context);
     return PaymentItem(
-      title: 'عنوان التوصيل :',
+      title: localization.deliveryAddress,
       child: Container(
         decoration: AppDecorations.greyDecoration,
         padding: EdgeInsets.symmetric(vertical: 5, horizontal: 2),
@@ -39,7 +41,7 @@ class DeliveryAddress extends StatelessWidget {
                   SvgPicture.asset('assets/images/edit.svg'),
                   SizedBox(width: 4),
                   Text(
-                    'تعديل',
+                    localization.edit,
                     style: TextStyles.semiBold13.copyWith(
                       color: AppColors.hintTextColor,
                     ),

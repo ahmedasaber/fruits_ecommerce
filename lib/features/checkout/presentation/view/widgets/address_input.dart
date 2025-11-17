@@ -5,6 +5,7 @@ import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/core/widget/custom_text_field.dart';
 import 'package:fruits_ecommerce/features/checkout/domain/enities/order_entity.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class AddressInput extends StatelessWidget {
   const AddressInput({super.key, required this.formKey, required this.valueListenable});
@@ -12,6 +13,7 @@ class AddressInput extends StatelessWidget {
   final ValueListenable<AutovalidateMode> valueListenable;
   @override
   Widget build(BuildContext context) {
+    var localization = S.of(context);
     var orderAddress= context.read<OrderInputEntity>().shippingAddressEntity;
     return SingleChildScrollView(
       child: ValueListenableBuilder(
@@ -25,42 +27,42 @@ class AddressInput extends StatelessWidget {
                 onSaved: (value){
                   orderAddress.name = value!;
                 },
-                hintText: 'الاسم كامل', textInputType: TextInputType.text
+                hintText: localization.fullName, textInputType: TextInputType.text
               ),
               SizedBox(height: 8,),
               CustomTextFormField(
                 onSaved: (value){
                   orderAddress.email = value!;
                 },
-                hintText: 'البريد الإلكتروني', textInputType: TextInputType.emailAddress
+                hintText: localization.email, textInputType: TextInputType.emailAddress
               ),
               SizedBox(height: 8,),
               CustomTextFormField(
                 onSaved: (value){
                   orderAddress.address = value!;
                 },
-                hintText: 'العنوان', textInputType: TextInputType.streetAddress
+                hintText: localization.address, textInputType: TextInputType.streetAddress
               ),
               SizedBox(height: 8,),
               CustomTextFormField(
                 onSaved: (value){
                   orderAddress.phone = value!;
                 },
-                hintText: 'رقم الهاتف', textInputType: TextInputType.phone
+                hintText: localization.phoneNumber, textInputType: TextInputType.phone
               ),
               SizedBox(height: 8,),
               CustomTextFormField(
                 onSaved: (value){
                   orderAddress.city = value!;
                 },
-                hintText: 'المدينه', textInputType: TextInputType.text
+                hintText: localization.city, textInputType: TextInputType.text
               ),
               SizedBox(height: 8,),
               CustomTextFormField(
                 onSaved: (value){
                   orderAddress.addressDetails = value!;
                 },
-                hintText: 'رقم الطابق , رقم الشقه ..', textInputType: TextInputType.streetAddress
+                hintText: localization.floorAndApartment, textInputType: TextInputType.streetAddress
               ),
               SizedBox(height: 8,),
               Row(
@@ -76,7 +78,7 @@ class AddressInput extends StatelessWidget {
                     ),
                   ),
                   SizedBox(width: 8,),
-                  Text('حفظ العنوان', style: TextStyles.semiBold13.copyWith(color: AppColors.hintTextColor,)),
+                  Text(localization.saveAddress, style: TextStyles.semiBold13.copyWith(color: AppColors.hintTextColor,)),
                 ],
               ),
             ],

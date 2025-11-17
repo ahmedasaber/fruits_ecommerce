@@ -6,6 +6,7 @@ import 'package:fruits_ecommerce/core/widget/custon_network_image.dart';
 import 'package:fruits_ecommerce/features/fruit_details/presentation/view/fruit_details_view.dart';
 import 'package:fruits_ecommerce/features/home/presentation/cubit/cart/cart_cubit.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/circular_icon_bt.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 import '../utils/app_colors.dart' show AppColors;
 
@@ -58,7 +59,7 @@ class FruitItem extends StatelessWidget {
                                   style: TextStyles.bold13.copyWith(color: AppColors.secondaryColor)
                                 ),
                                 TextSpan(
-                                  text: '/ الكيلو',
+                                  text: S.of(context).perKilo,
                                   style: TextStyles.bold13.copyWith(color: AppColors.lightSecondaryColor)
                                 ),
                               ]

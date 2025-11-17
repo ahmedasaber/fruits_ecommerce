@@ -9,6 +9,7 @@ import 'package:fruits_ecommerce/features/checkout/domain/enities/payment%20enti
 import 'package:fruits_ecommerce/features/checkout/presentation/add_order_cubit/add_order_cubit.dart';
 import 'package:fruits_ecommerce/features/checkout/presentation/view/widgets/checkout_steps.dart';
 import 'package:fruits_ecommerce/features/checkout/presentation/view/widgets/checkout_steps_page_view.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class CheckoutViewBody extends StatefulWidget {
   const CheckoutViewBody({super.key});
@@ -53,7 +54,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
               if (orderEntity.payWithCash != null) {
                 pageController.animateToPage(i, duration: Duration(milliseconds: 300), curve:Curves.bounceIn);
               }else{
-                showErrorBar(context, 'يرجى تحديد طريقه الدفع', backgroundColor: Colors.red, durationInSec: 1);
+                showErrorBar(context, S.of(context).pleaseSelectPayment, backgroundColor: Colors.red, durationInSec: 1);
               }
             }else{
               _handeAddressSection(context);
@@ -117,7 +118,7 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     if (context.read<OrderInputEntity>().payWithCash != null) {
       pageController.animateToPage(currentPage+1,duration: Duration(milliseconds: 300), curve: Curves.bounceIn);
     }else{
-      showErrorBar(context, 'يرجى تحديد طريقه الدفع', backgroundColor: Colors.red, durationInSec: 1);
+      showErrorBar(context, S.of(context).pleaseSelectPayment, backgroundColor: Colors.red, durationInSec: 1);
     }
   }
 
@@ -131,19 +132,20 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   }
 
   String getNextBtText(int currPage) {
+    var localization = S.of(context);
     switch(currPage){
       case 0:
-        return 'التالي';
+        return localization.next;
       case 1:
-        return 'التالي';
+        return localization.next;
       case 2:
         if(context.read<OrderInputEntity>().payWithCash!){
-          return 'تأكيد الطلب';
+          return localization.confirmOrder;
         }else{
-          return 'الدفع عن طريق paypal';
+          return localization.payViaPaypal;
         }
       default:
-        return 'التالي';
+        return localization.next;
     }
   }
 }

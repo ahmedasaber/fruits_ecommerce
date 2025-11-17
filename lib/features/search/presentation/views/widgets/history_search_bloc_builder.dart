@@ -5,6 +5,7 @@ import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/features/search/presentation/cubit/history_search_cubit.dart';
 import 'package:fruits_ecommerce/features/search/presentation/views/widgets/histories_item.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class HistorySearchBlocBuilder extends StatelessWidget {
   const HistorySearchBlocBuilder({
@@ -16,6 +17,7 @@ class HistorySearchBlocBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var localization = S.of(context);
     return BlocBuilder<HistorySearchCubit, HistorySearchState>(
       builder: (context, state) {
         if(state is HistorySearchLoaded){
@@ -26,13 +28,13 @@ class HistorySearchBlocBuilder extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('عمليات البحث الأخيرة', style: TextStyles.semiBold13,),
+                  Text(localization.recentSearches, style: TextStyles.semiBold13,),
                   InkWell(
                     onTap: () {
                       context.read<HistorySearchCubit>().deleteHistory();
                     },
                     child: Text(
-                      'حذف الكل',
+                      localization.deleteAll,
                       style: TextStyles.regular13.copyWith(color: AppColors.hintTextColor),
                     ),
                   ),

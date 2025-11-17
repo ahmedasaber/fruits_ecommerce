@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce/features/checkout/domain/enities/order_entity.dart';
 import 'package:fruits_ecommerce/features/checkout/presentation/view/widgets/payment_item.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../core/utils/app_text_style.dart';
@@ -13,24 +14,25 @@ class OrderSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var orderEntity = context.read<OrderInputEntity>().cartEntity;
+    var localization = S.of(context);
     return PaymentItem(
-      title: 'ملخص الطلب :',
+      title: localization.orderSummary,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15.0),
         child: Column(
           children: [
             Row(
               children: [
-                const Text('المجموع الفرعي :',style: TextStyles.regular13,),
+                Text(localization.subtotal,style: TextStyles.regular13,),
                 const Spacer(),
-                Text('${orderEntity.calculateTotalPrice().toStringAsFixed(2)} جنيه',style: TextStyles.semiBold16,),
+                Text(localization.priceInEGP(orderEntity.calculateTotalPrice().toStringAsFixed(2)),style: TextStyles.semiBold16,),
               ],
             ),
-            const Row(
+            Row(
               children: [
-                Text('التوصيل  :',style: TextStyles.regular13,),
+                Text(localization.delivery,style: TextStyles.regular13,),
                 Spacer(),
-                Text('40 جنيه',style: TextStyles.semiBold13,),
+                Text(localization.deliveryPrice,style: TextStyles.semiBold13,),
                 SizedBox(width: 20,)
               ],
             ),
@@ -44,9 +46,9 @@ class OrderSummary extends StatelessWidget {
             ),
             Row(
               children: [
-                Text('الكلي',style: TextStyles.bold16,),
+                Text(localization.total,style: TextStyles.bold16,),
                 Spacer(),
-                Text('${(orderEntity.calculateTotalPrice() + 40).toStringAsFixed(2)} جنيه',style: TextStyles.bold16,),
+                Text(localization.priceInEGP((orderEntity.calculateTotalPrice() + 40).toStringAsFixed(2)),style: TextStyles.bold16,),
               ],
             ),
           ],

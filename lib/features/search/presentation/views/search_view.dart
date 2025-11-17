@@ -6,6 +6,7 @@ import 'package:fruits_ecommerce/core/services/get_it_service.dart';
 import 'package:fruits_ecommerce/core/widget/build_app_bar.dart';
 import 'package:fruits_ecommerce/features/search/presentation/cubit/history_search_cubit.dart';
 import 'package:fruits_ecommerce/features/search/presentation/views/widgets/search_view_body.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key, required this.query});
@@ -16,7 +17,7 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildCustomAppBar(context: context, title: 'البحث'),
+      appBar: buildCustomAppBar(context: context, title: S.of(context).search),
       body: MultiBlocProvider(
         providers: [
           BlocProvider(

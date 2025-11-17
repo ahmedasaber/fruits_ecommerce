@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_style.dart';
@@ -12,7 +13,7 @@ class ReviewsHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){},
-      child: Text('المراجعه', style: TextStyles.bold13.copyWith(
+      child: Text(S.of(context).review, style: TextStyles.bold13.copyWith(
         color: AppColors.primaryColor,
         decoration: TextDecoration.underline,
         decorationColor: AppColors.primaryColor,

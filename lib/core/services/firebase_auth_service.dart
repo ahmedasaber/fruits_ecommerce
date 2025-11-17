@@ -130,22 +130,23 @@ class FirebaseAuthService{
     FirebaseAuth.instance.signOut();
   }
 
-  Future<void> sendPasswordResetEmail({required String email}) async {
+  Future<void> sendPasswordResetEmail({required BuildContext context ,required String email}) async {
+    var localization = S.of(context);
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
         case 'invalid-email':
-          throw CustomExceptions(message: 'صيغة الإيميل غير صحيحة.');
+          throw CustomExceptions(message: localization.invalidEmailFormat);
         case 'user-not-found':
-          throw CustomExceptions(message: 'هذا الإيميل غير مسجَّل لدينا.');
+          throw CustomExceptions(message: localization.emailNotRegistered);
         case 'too-many-requests':
-          throw CustomExceptions(message: 'تم إرسال محاولات كثيرة. حاول لاحقًا.');
+          throw CustomExceptions(message: localization.tooManyRequests);
         default:
-          throw CustomExceptions(message: 'خطأ من الخادم: ${e.message ?? e.code}');
+          throw CustomExceptions(message: '${localization.serverError}: ${e.message ?? e.code}');
       }
     } catch (e) {
-      throw CustomExceptions(message: 'هناك خطأ ما، حاول مرة أخرى.');
+      throw CustomExceptions(message: localization.somethingWentWrong);
     }
   }
 
@@ -168,31 +169,32 @@ class FirebaseAuthService{
     }
   }
 
-  Future<void> updatePassword({required String newPassword}) async {
+  Future<void> updatePassword({required BuildContext context ,required String newPassword}) async {
+    var localization = S.of(context);
     try {
       final user = FirebaseAuth.instance.currentUser!;
       await user.updatePassword(newPassword);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'requires-recent-login') {
-        throw CustomExceptions(message: "يجب تسجيل الدخول مرة أخرى قبل تغيير كلمة المرور.");
+        throw CustomExceptions(message: localization.recentLoginRequired);
       }
       else if (e.code == 'weak-password') {
-        throw CustomExceptions(message: "كلمة المرور ضعيفة جدًا. يرجى اختيار كلمة أقوى.");
+        throw CustomExceptions(message: localization.weakPasswordUpdate);
       }
       else if (e.code == 'network-request-failed') {
-        throw CustomExceptions(message: "لا يوجد اتصال بالإنترنت.");
+        throw CustomExceptions(message: localization.noInternet);
       }
       else if (e.code == 'user-disabled') {
-        throw CustomExceptions(message: "هذا الحساب معطّل ولا يمكن تعديله.");
+        throw CustomExceptions(message: localization.accountDisabled);
       }
       else if (e.code == 'invalid-credential') {
-        throw CustomExceptions(message: "جلسة الدخول غير صالحة، حاول تسجيل الدخول مرة أخرى.");
+        throw CustomExceptions(message: localization.invalidSession);
       }
       else {
-        throw CustomExceptions(message: e.message ?? "حدث خطأ غير متوقع.");
+        throw CustomExceptions(message: e.message ?? localization.unexpectedError);
       }
     } catch (e) {
-      throw CustomExceptions(message:'حدث خطأ غير متوقع. حاول مرة أخرى. ');
+      throw CustomExceptions(message: localization.unexpectedErrorRetry);
     }
   }
 }

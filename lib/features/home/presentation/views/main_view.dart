@@ -7,6 +7,8 @@ import 'package:fruits_ecommerce/features/home/presentation/cubit/cart/cart_cubi
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/main_view_body.dart';
 
+import '../../../../generated/l10n.dart';
+
 class MainView extends StatefulWidget {
   const MainView({super.key});
 
@@ -26,14 +28,15 @@ class _MainViewState extends State<MainView> {
       child: Scaffold(
         body: BlocListener<CartCubit, CartState>(
           listener: (context, state) {
+            var localization = S.of(context);
             if(state is CartItemAdded){
-              showErrorBar(context, 'تم الاضافة الي السلة', backgroundColor: AppColors.primaryColor, durationInSec: 1);
+              showErrorBar(context, localization.addedToCart, backgroundColor: AppColors.primaryColor, durationInSec: 1);
             }
             if(state is CartItemRemoved){
-              showErrorBar(context, 'تم الازالة من السلة', backgroundColor: Colors.red, durationInSec: 1);
+              showErrorBar(context, localization.removedFromCart, backgroundColor: Colors.red, durationInSec: 1);
             }
             if(state is CartItemFailed){
-              showErrorBar(context, 'حدث خطاء', backgroundColor: Colors.red, durationInSec: 1);
+              showErrorBar(context, localization.errorOccurred, backgroundColor: Colors.red, durationInSec: 1);
             }
           },
          child:  MainViewBody(selectedIndex: selectedIndex),

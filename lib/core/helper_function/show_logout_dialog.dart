@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/core/widget/custom_button.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 Future<bool?> showLogoutDialog(BuildContext context) {
+  var localization = S.of(context);
   return showDialog<bool>(
     context: context,
     barrierDismissible: false,
@@ -20,7 +22,7 @@ Future<bool?> showLogoutDialog(BuildContext context) {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    'هل ترغب في تسجيل الخروج ؟',
+                    localization.logoutConfirmation,
                     textAlign: TextAlign.center,
                     style: TextStyles.bold16,
                   ),
@@ -29,14 +31,14 @@ Future<bool?> showLogoutDialog(BuildContext context) {
                     children: [
                       Expanded(
                         child: CustomButton(
-                          text: 'تأكيد',
+                          text: localization.confirm,
                           onPressed: () => Navigator.pop(context, true),
                         ),
                       ),
                       const SizedBox(width: 8),
                       Expanded(
                         child: CustomButton(
-                          text: 'لا أرغب',
+                          text: localization.doNotWant,
                           onPressed: () => Navigator.pop(context, false),
                           backgroundColor: Colors.white,
                           borderSideColor: AppColors.primaryColor,

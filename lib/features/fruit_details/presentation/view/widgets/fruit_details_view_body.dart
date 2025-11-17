@@ -8,6 +8,7 @@ import 'package:fruits_ecommerce/features/fruit_details/presentation/view/widget
 import 'package:fruits_ecommerce/features/fruit_details/presentation/view/widgets/reviews_header.dart';
 import 'package:fruits_ecommerce/features/fruit_details/presentation/view/widgets/state_card.dart';
 import 'package:fruits_ecommerce/features/home/presentation/cubit/cart/cart_cubit.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 import '../../../../../core/utils/app_text_style.dart';
 import '../../../../home/presentation/views/widgets/circular_icon_bt.dart';
 
@@ -25,6 +26,7 @@ class _FruitDetailsViewBodyState extends State<FruitDetailsViewBody> {
   int counter = 1;
   @override
   Widget build(BuildContext context) {
+    var localization = S.of(context);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -84,13 +86,13 @@ class _FruitDetailsViewBodyState extends State<FruitDetailsViewBody> {
                 const SizedBox(height: 8,),
                 Text(widget.productEntity.description , style: TextStyles.regular13.copyWith(color: AppColors.hintTextColor),),
                 const SizedBox(height: 16,),
-                StateCard(title: '${widget.productEntity.expirationsMonth} شهر', subTitle: 'الصلاحيه', iconPath: 'assets/images/calender.svg',),
+                StateCard(title: '${widget.productEntity.expirationsMonth} ${localization.expirationMonths}', subTitle: localization.validity, iconPath: 'assets/images/calender.svg',),
                 const SizedBox(height: 8,),
-                StateCard(title: '100%', subTitle: 'اوجانيك', iconPath: 'assets/images/natural.svg',),
+                StateCard(title: '100%', subTitle: localization.organic, iconPath: 'assets/images/natural.svg',),
                 const SizedBox(height: 8,),
-                StateCard(title: '${widget.productEntity.numOfCalories} كالوري', subTitle: '${widget.productEntity.unitAmount} جرام', iconPath: 'assets/images/calo.svg',),
+                StateCard(title: '${widget.productEntity.numOfCalories} ${localization.calories}', subTitle: '${widget.productEntity.unitAmount} ${localization.grams}', iconPath: 'assets/images/calo.svg',),
                 SizedBox(height: 16,),
-                CustomButton(text: 'أضف الي السلة', onPressed: (){
+                CustomButton(text: localization.addToCart, onPressed: (){
                   context.read<CartCubit>().addProduct(widget.productEntity, count: counter);
                 }),
                 SizedBox(height: 24,),

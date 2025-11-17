@@ -4,6 +4,7 @@ import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/features/my%20orders/domain/entities/my_order_entity.dart';
 import 'package:fruits_ecommerce/features/my%20orders/presentaion/cubit/my_orders_cubit.dart';
 import 'package:fruits_ecommerce/features/my%20orders/presentaion/views/widgets/order%20_card.dart';
+import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class MyOrdersViewBody extends StatelessWidget {
   const MyOrdersViewBody({super.key});
@@ -15,7 +16,7 @@ class MyOrdersViewBody extends StatelessWidget {
         if (state is MyOrdersSuccess) {
           List<MyOrderEntity> myOrders = state.myOrders;
           if(myOrders.isEmpty){
-            return Center(child: Text('لم تقم بعمل اي طلب حتي الان!', style: TextStyles.semiBold16,),);
+            return Center(child: Text(S.of(context).noOrdersYet, style: TextStyles.semiBold16,),);
           }else {
             return ListView.builder(
             itemCount: myOrders.length,
