@@ -1,10 +1,23 @@
 import 'dart:ui';
-import 'package:bloc/bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 
-class LanguageCubit extends Cubit<Locale> {
+class LanguageCubit extends HydratedCubit<Locale> {
   LanguageCubit() : super(const Locale('ar'));
 
   void changeToEnglish() => emit(const Locale('en'));
   void changeToArabic() => emit(const Locale('ar'));
+
+  @override
+  Locale? fromJson(Map<String, dynamic> json) {
+    final code = json['languageCode'] as String?;
+    return code != null ? Locale(code) : null;
+  }
+
+  @override
+  Map<String, dynamic>? toJson(Locale state) {
+    return {
+      'languageCode': state.languageCode,
+    };
+  }
 }
