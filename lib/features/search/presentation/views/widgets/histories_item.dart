@@ -12,10 +12,8 @@ class HistoriesItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 16.0),
-          child: Icon(Icons.access_time, size: 24, color: Colors.grey),
-        ),
+        Icon(Icons.access_time, size: 24, color: Colors.grey),
+        SizedBox(width: 16,),
         Expanded(
           child: GestureDetector(
             onTap: onTap,
