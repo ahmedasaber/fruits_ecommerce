@@ -246,6 +246,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sortBy": MessageLookupByLibrary.simpleMessage("ترتيب حسب :"),
         "startNow": MessageLookupByLibrary.simpleMessage("ابدأ الان"),
         "subtotal": MessageLookupByLibrary.simpleMessage("المجموع الفرعي :"),
+        "success": MessageLookupByLibrary.simpleMessage("نجح"),
         "successfullyCompleted":
             MessageLookupByLibrary.simpleMessage("تم بنجاح !"),
         "termsAndConditions":

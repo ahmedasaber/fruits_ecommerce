@@ -23,7 +23,7 @@ class SignUpView extends StatelessWidget {
         body: BlocConsumer<SignupCubit, SignupState>(
           listener: (context, state) {
             if (state is SignupSuccess){
-              showErrorBar(context,'success');
+              showErrorBar(context, S.of(context).success);
               Future.delayed(Duration(seconds: 2), () {
                 if (context.mounted) {
                   Navigator.pop(context);

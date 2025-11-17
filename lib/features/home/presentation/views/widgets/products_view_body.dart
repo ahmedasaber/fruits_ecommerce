@@ -7,6 +7,7 @@ import 'package:fruits_ecommerce/core/widget/custom_search_textfield.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/products_bloc_builder.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/products_view_header.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/sort_sheet_body.dart';
+import 'package:fruits_ecommerce/features/search/presentation/views/search_view.dart';
 import 'package:fruits_ecommerce/generated/l10n.dart';
 
 class ProductsViewBody extends StatefulWidget {
@@ -39,7 +40,9 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
                     showBackBt: false,
                   ),
                   SizedBox(height: 16),
-                  CustomSearchTextField(),
+                  CustomSearchTextField(onSubmitted: (value){
+                    Navigator.pushNamed(context, SearchView.routeName, arguments: value.trim());
+                  },),
                   SizedBox(height: 12),
                   ProductsViewHeader(
                     count: context.read<ProductsCubit>().productsLength,
@@ -54,6 +57,7 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
               ),
             ),
             ProductsGridViewBlocBuilder(),
+            SliverToBoxAdapter(child: SizedBox(height: 16,)),
           ],
         ),
       ),

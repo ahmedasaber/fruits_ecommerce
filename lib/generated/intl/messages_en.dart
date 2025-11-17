@@ -250,6 +250,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sortBy": MessageLookupByLibrary.simpleMessage("Sort By:"),
         "startNow": MessageLookupByLibrary.simpleMessage("Start Now"),
         "subtotal": MessageLookupByLibrary.simpleMessage("Subtotal:"),
+        "success": MessageLookupByLibrary.simpleMessage("success"),
         "successfullyCompleted":
             MessageLookupByLibrary.simpleMessage("Successful!"),
         "termsAndConditions":

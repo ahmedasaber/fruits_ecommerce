@@ -224,5 +224,6 @@
   "deleteAll": "Delete All",
   "infoNotAvailable": "Oops... This information is not available at the moment",
   "searchResults": "Search Results",
-  "chooseLanguage": "Select Language:"
+  "chooseLanguage": "Select Language:",
+  "success": "success"
 }

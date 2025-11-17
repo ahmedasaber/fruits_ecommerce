@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruits_ecommerce/core/helper_function/get_current_localization.dart';
 import 'package:fruits_ecommerce/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce/core/widget/build_app_bar.dart';
 import 'package:fruits_ecommerce/core/widget/custom_button.dart';
@@ -16,7 +17,7 @@ class PaymentSuccessPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var localization = S.of(context);
     return Directionality(
-      textDirection: TextDirection.rtl,
+      textDirection: isArabic()? TextDirection.rtl : TextDirection.ltr,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: buildCustomAppBar(
