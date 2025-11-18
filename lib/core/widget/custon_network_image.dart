@@ -10,14 +10,14 @@ class CustomNetworkImage extends StatelessWidget {
     return Image.network(
       imageUrl,
       fit: BoxFit.cover,
-      errorBuilder: (context, err, stackTrace) => SizedBox(
-        height: 100,
-        width: double.infinity,
-        child: Image.asset(
-          'assets/images/fruit-image.png',
-          fit: BoxFit.contain,
-        ),
-      ),
+      errorBuilder: (context, error, stackTrace) {
+        return Container(
+          width: double.infinity,
+          height: 60,
+          color: Colors.grey.shade300,
+          child: const Icon(Icons.image_not_supported, size: 60,),
+        );
+      },
     );
   }
 }
