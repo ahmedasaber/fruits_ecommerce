@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_ecommerce/core/entities/product_entity.dart';
+import 'package:fruits_ecommerce/core/models/product_model.dart';
 import 'package:fruits_ecommerce/core/utils/app_text_style.dart';
 import 'package:fruits_ecommerce/core/widget/custon_network_image.dart';
+import 'package:fruits_ecommerce/features/favorites/presentation/cubit/favorites_cubit.dart';
 import 'package:fruits_ecommerce/features/fruit_details/presentation/view/fruit_details_view.dart';
 import 'package:fruits_ecommerce/features/home/presentation/cubit/cart/cart_cubit.dart';
 import 'package:fruits_ecommerce/features/home/presentation/views/widgets/circular_icon_bt.dart';
@@ -14,8 +16,17 @@ class FruitItem extends StatelessWidget {
   const FruitItem({super.key, required this.product});
 
   final ProductEntity product;
+
   @override
   Widget build(BuildContext context) {
+    return BlocSelector<FavoritesCubit, FavoritesState, bool>(
+      selector: (state){
+        if(state is FavoritesSuccess){
+          return state.favProducts.any((p)=> p.code == product.code);
+        }
+        return product.isFav;
+      },
+    builder: (context, isFav) {
     return GestureDetector(
       onTap: (){
         Navigator.pushNamed(context, FruitDetailsView.routeName, arguments: product);
@@ -77,11 +88,20 @@ class FruitItem extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Icon(Icons.favorite_border_outlined)
+              child: GestureDetector(
+                onTap:(){
+                  // isFav = !isFav;
+                  product.isFav = !isFav;
+                  context.read<FavoritesCubit>().toggleFavProduct(ProductModel.fromEntity(product));
+                },
+                child: isFav? Icon(Icons.favorite, color: Colors.red,) : Icon(Icons.favorite_border_outlined)
+              )
             ),
           ],
         ),
       ),
     );
+  },
+);
   }
 }
