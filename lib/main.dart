@@ -44,7 +44,7 @@ void main() async {
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => LanguageCubit()),
-        BlocProvider(create: (context) => FavoritesCubit(getIt<ProductsRepo>(), getIt<FavoritesRepo>())),
+        BlocProvider(create: (context) => FavoritesCubit(getIt<ProductsRepo>(), getIt<FavoritesRepo>())..getFavProducts()),
       ], 
       child: const FruitHub(),
     ),
