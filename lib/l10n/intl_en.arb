@@ -225,5 +225,6 @@
   "infoNotAvailable": "Oops... This information is not available at the moment",
   "searchResults": "Search Results",
   "chooseLanguage": "Select Language:",
-  "success": "success"
+  "success": "success",
+  "noFavorites": "No Favorites"
 }

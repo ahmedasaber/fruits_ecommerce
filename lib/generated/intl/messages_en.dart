@@ -163,6 +163,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "noAccount":
             MessageLookupByLibrary.simpleMessage("Don’t have an account?"),
+        "noFavorites": MessageLookupByLibrary.simpleMessage("No Favorites"),
         "noInternet":
             MessageLookupByLibrary.simpleMessage("No internet connection."),
         "noOrdersYet": MessageLookupByLibrary.simpleMessage(

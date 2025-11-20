@@ -226,5 +226,6 @@
   "infoNotAvailable": "عفوًا... هذه المعلومات غير متوفرة للحظة",
   "searchResults": "نتائج البحث",
   "chooseLanguage": "اختر اللغة:",
-  "success": "نجح"
+  "success": "نجح",
+  "noFavorites": "لا يوجد مفضلات"
 }

@@ -17,6 +17,8 @@ ProductEntity getDummyProduct() {
     imageUrl: '',
     image: null,
     avgRating: 0,
+    sellingCount: 0,
+    isFav: false,
   );
 }
 

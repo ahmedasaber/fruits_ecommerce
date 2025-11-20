@@ -4,7 +4,6 @@ import 'package:fruits_ecommerce/core/helper_function/get_avg_rating.dart';
 import 'package:fruits_ecommerce/core/models/review_model.dart';
 
 class ProductModel extends ProductEntity {
-  final num sellingCount;
 
   ProductModel({
     required super.name,
@@ -13,6 +12,7 @@ class ProductModel extends ProductEntity {
     required super.price,
     required super.image,
     required super.isFeatured,
+    required super.isFav,
     required super.imageUrl,
     required super.expirationsMonth,
     required super.numOfCalories,
@@ -20,7 +20,7 @@ class ProductModel extends ProductEntity {
     required super.isOrganic,
     required super.reviews,
     required super.avgRating,
-    required this.sellingCount,
+    required super.sellingCount,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> jsonData){
@@ -34,6 +34,7 @@ class ProductModel extends ProductEntity {
             toReviewModels(jsonData['reviews'])
         ),
         isFeatured: jsonData['isFeatured'],
+        isFav: jsonData['isFav'],
         imageUrl: jsonData['imageUrl'] ?? 'https://www.svgrepo.com/show/508699/landscape-placeholder.svg',
         expirationsMonth: jsonData['expirationsMonth'],
         numOfCalories: jsonData['numOfCalories'],
@@ -44,22 +45,25 @@ class ProductModel extends ProductEntity {
     );
   }
 
-  // factory ProductModel.fromEntity(ProductEntity entity) {
-  //   return ProductModel(
-  //     name: entity.name,
-  //     code: entity.code,
-  //     description: entity.description,
-  //     price: entity.price,
-  //     image: entity.image,
-  //     isFeatured: entity.isFeatured,
-  //     imageUrl: entity.imageUrl,
-  //     expirationsMonth: entity.expirationsMonth,
-  //     numOfCalories: entity.numOfCalories,
-  //     unitAmount: entity.unitAmount,
-  //     isOrganic: entity.isOrganic,
-  //     reviews: entity.reviews,
-  //   );
-  // }
+  factory ProductModel.fromEntity(ProductEntity entity) {
+    return ProductModel(
+      name: entity.name,
+      code: entity.code,
+      description: entity.description,
+      price: entity.price,
+      image: entity.image,
+      isFeatured: entity.isFeatured,
+      isFav: entity.isFav,
+      imageUrl: entity.imageUrl,
+      expirationsMonth: entity.expirationsMonth,
+      numOfCalories: entity.numOfCalories,
+      unitAmount: entity.unitAmount,
+      isOrganic: entity.isOrganic,
+      reviews: entity.reviews,
+      avgRating: entity.avgRating,
+      sellingCount: entity.sellingCount,
+    );
+  }
 
   ProductEntity toEntity() {
     return ProductEntity(
@@ -69,6 +73,7 @@ class ProductModel extends ProductEntity {
       price: price,
       image: image,
       isFeatured: isFeatured,
+      isFav: isFav,
       imageUrl: imageUrl,
       expirationsMonth: expirationsMonth,
       numOfCalories: numOfCalories,
@@ -76,6 +81,7 @@ class ProductModel extends ProductEntity {
       isOrganic: isOrganic,
       reviews: reviews,
       avgRating: avgRating,
+      sellingCount: sellingCount,
     );
   }
 
@@ -86,6 +92,7 @@ class ProductModel extends ProductEntity {
       'description': description,
       'price': price,
       'isFeatured': isFeatured,
+      'isFav': isFav,
       'imageUrl': imageUrl,
       'expirationsMonth': expirationsMonth,
       'isOrganic': isOrganic,
@@ -93,6 +100,7 @@ class ProductModel extends ProductEntity {
       'unitAmount': unitAmount,
       'reviews': reviews.map((e) => ReviewModel.fromEntity(e).toMap()).toList(),
       'avgRating': avgRating,
+      'sellingCount': sellingCount,
     };
   }
 }

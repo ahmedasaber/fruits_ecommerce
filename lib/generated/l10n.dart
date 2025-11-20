@@ -1609,6 +1609,16 @@ class S {
       args: [],
     );
   }
+
+  /// `No Favorites`
+  String get noFavorites {
+    return Intl.message(
+      'No Favorites',
+      name: 'noFavorites',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

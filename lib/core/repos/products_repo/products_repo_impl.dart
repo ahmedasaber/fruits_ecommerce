@@ -8,11 +8,12 @@ import 'package:fruits_ecommerce/core/models/product_model.dart';
 import 'package:fruits_ecommerce/core/repos/products_repo/products_repo.dart';
 import 'package:fruits_ecommerce/core/services/database_service.dart';
 import 'package:fruits_ecommerce/core/utils/backend_endpoints.dart';
+import 'package:fruits_ecommerce/features/favorites/data/data_source/data_source.dart';
 
 class ProductsRepoImpl extends ProductsRepo{
   final DatabaseService databaseService;
-
-  ProductsRepoImpl({required this.databaseService});
+  final DatabaseRemoteSource databaseRemoteSource;
+  ProductsRepoImpl( {required this.databaseService, required this.databaseRemoteSource,});
   @override
   Future<Either<Failure, List<ProductEntity>>> getBestSellingProducts() async{
     try {
@@ -25,6 +26,11 @@ class ProductsRepoImpl extends ProductsRepo{
           }
       ) as List<Map<String, dynamic>>;
       List<ProductModel> products = data.map((e) => ProductModel.fromJson(e)).toList();
+
+      List<String> favProductsData = await databaseRemoteSource.getFavData();
+      for(var product in products){
+        product.isFav = favProductsData.contains(product.code);
+      }
       return right(products);
     } catch (e){
       log(' best $e');
@@ -35,8 +41,13 @@ class ProductsRepoImpl extends ProductsRepo{
   @override
   Future<Either<Failure, List<ProductEntity>>> getProducts() async{
    try {
-     var data = await databaseService.getData(path: BackEndEndPoints.getProducts) as List<Map<String, dynamic>>;
-     List<ProductModel> products = data.map((e) => ProductModel.fromJson(e)).toList();
+     var productsData = await databaseService.getData(path: BackEndEndPoints.getProducts) as List<Map<String, dynamic>>;
+     List<ProductModel> products = productsData.map((e) => ProductModel.fromJson(e)).toList();
+
+     List<String> favProductsData = await databaseRemoteSource.getFavData();
+     for(var product in products){
+       product.isFav = favProductsData.contains(product.code);
+     }
      return right(products);
    } catch (e){
      log('all $e');
@@ -54,6 +65,11 @@ class ProductsRepoImpl extends ProductsRepo{
           'orderBy': 'name'
         });
       List<ProductModel> products = data.map((e) => ProductModel.fromJson(e)).toList();
+
+      List<String> favProductsData = await databaseRemoteSource.getFavData();
+      for(var product in products){
+        product.isFav = favProductsData.contains(product.code);
+      }
       return right(products);
     } catch (e) {
       return left(ServerFailure('Failed to get products $e'));
@@ -69,6 +85,11 @@ class ProductsRepoImpl extends ProductsRepo{
         query: sortBy
       );
       List<ProductModel> products = data.map((e) => ProductModel.fromJson(e)).toList();
+
+      List<String> favProductsData = await databaseRemoteSource.getFavData();
+      for(var product in products){
+        product.isFav = favProductsData.contains(product.code);
+      }
       return right(products);
     } catch (e) {
       return left(ServerFailure('Failed to get products $e'));

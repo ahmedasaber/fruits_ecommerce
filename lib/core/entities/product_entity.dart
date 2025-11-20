@@ -8,6 +8,7 @@ class ProductEntity {
   final num price;
   final File? image;
   final bool isFeatured;
+  bool isFav;
   String? imageUrl;
   final int expirationsMonth;
   final bool isOrganic;
@@ -16,6 +17,7 @@ class ProductEntity {
   final num avgRating;
   final num ratingCount = 0;
   final List<ReviewEntity> reviews;
+  final num sellingCount;
 
   ProductEntity({
     required this.name,
@@ -24,6 +26,7 @@ class ProductEntity {
     required this.price,
     required this.image,
     required this.isFeatured,
+    required this.isFav,
     this.imageUrl,
     required this.expirationsMonth,
     required this.avgRating,
@@ -31,5 +34,6 @@ class ProductEntity {
     required this.numOfCalories,
     required this.unitAmount,
     required this.reviews,
+    required this.sellingCount,
   });
 }

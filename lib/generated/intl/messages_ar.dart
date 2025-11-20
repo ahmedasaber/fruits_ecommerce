@@ -160,6 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("كلمة المرور الجديده"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "noAccount": MessageLookupByLibrary.simpleMessage(" لا تمتلك حساب؟"),
+        "noFavorites": MessageLookupByLibrary.simpleMessage("لا يوجد مفضلات"),
         "noInternet":
             MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالإنترنت."),
         "noOrdersYet": MessageLookupByLibrary.simpleMessage(
