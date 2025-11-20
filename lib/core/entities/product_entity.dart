@@ -1,8 +1,7 @@
 import 'dart:io';
-import 'package:equatable/equatable.dart';
 import 'package:fruits_ecommerce/core/entities/review_entity.dart';
 
-class ProductEntity extends Equatable{
+class ProductEntity {
   final String name;
   final String code;
   final String description;
@@ -39,5 +38,12 @@ class ProductEntity extends Equatable{
   });
 
   @override
-  List<Object?> get props => [code];
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+          other is ProductEntity &&
+              runtimeType == other.runtimeType &&
+              code == other.code;
+
+  @override
+  int get hashCode => code.hashCode;
 }
