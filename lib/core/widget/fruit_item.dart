@@ -19,14 +19,14 @@ class FruitItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<FavoritesCubit, FavoritesState, bool>(
-      selector: (state){
-        if(state is FavoritesSuccess){
-          return state.favProducts.any((p)=> p.code == product.code);
-        }
-        return product.isFav;
-      },
-    builder: (context, isFav) {
+    return BlocBuilder<FavoritesCubit, FavoritesState>(
+    builder: (context, state) {
+      bool isFav = product.isFav;
+
+      if (state is FavoritesSuccess) {
+        isFav = state.favProducts.any((p) => p.code == product.code);
+      }
+
     return GestureDetector(
       onTap: (){
         Navigator.pushNamed(context, FruitDetailsView.routeName, arguments: product);
@@ -90,8 +90,6 @@ class FruitItem extends StatelessWidget {
               alignment: Alignment.topRight,
               child: GestureDetector(
                 onTap:(){
-                  // isFav = !isFav;
-                  product.isFav = !isFav;
                   context.read<FavoritesCubit>().toggleFavProduct(ProductModel.fromEntity(product));
                 },
                 child: isFav? Icon(Icons.favorite, color: Colors.red,) : Icon(Icons.favorite_border_outlined)

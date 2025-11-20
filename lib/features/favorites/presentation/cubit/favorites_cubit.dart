@@ -25,6 +25,26 @@ class FavoritesCubit extends Cubit<FavoritesState> {
 
   void toggleFavProduct(ProductModel product) async{
     await favoritesRepo.toggleFavProduct(productID: product.code);
-    getFavProducts();
+    if(state is FavoritesSuccess){
+      final currentFavs = (state as FavoritesSuccess).favProducts;
+      //List<ProductEntity> updatedFavs = Set.from(currentFavs);
+
+      // Check if product exists in favorites
+      final isExist = currentFavs.contains(product);
+      List<ProductEntity> updatedFavs = List.from(currentFavs);
+      if (isExist) {
+        // Product is currently favorited, remove it
+        updatedFavs.remove(product);
+        product.isFav = false;
+      } else {
+        // Product is not favorited, add it
+        product.isFav = true;
+        updatedFavs.add(product);
+      }
+
+      emit(FavoritesSuccess(favProducts: updatedFavs));
+    }else{
+      getFavProducts();
+    }
   }
 }
