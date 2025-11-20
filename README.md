@@ -154,7 +154,7 @@ lib/
 
 For managing products and orders, please use our admin dashboard:
 
-**Dashboard Link:** [Add your dashboard link here]
+**Dashboard Link:** [https://github.com/ahmedasaber/fruit_dashboard]
 
 Features:
 - Product management (Add)
